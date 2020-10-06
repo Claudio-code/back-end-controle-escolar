@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Exception\UserException;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -52,6 +53,21 @@ class UserController extends AbstractController
 
         $password = $passwordEncoder->encodePassword($user, $jsonData['password']);
         $user->setPassword($password);
+
+        try {
+            $doctrine = $this->getDoctrine()->getManager();
+            $doctrine->persist($user);
+            $doctrine->flush();
+
+            return $this->json([
+                'message' => 'Cadastrado com sucesso.',
+                'user' => $user
+            ]);
+        } catch (UserException $userException) {
+            return $this->json([
+                'error' => $userException
+            ]);
+        }
 
         return $this->json(['data' => 'casa']);
     }
