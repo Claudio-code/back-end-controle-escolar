@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use JsonSerializable;
@@ -57,7 +58,6 @@ class User implements JsonSerializable, UserInterface
      *     message="a senha não pode ser nulo",
      *     payload={"severity"="error"}
      * )
-     * @Assert\Type(type="string")
      */
     private string $roles;
 
@@ -148,16 +148,24 @@ class User implements JsonSerializable, UserInterface
         return $this;
     }
 
-    public function getRoles(): string
+    public function getRoles()
     {
-        return $this->roles;
+        $roles = [];
+        $roles[] = $this->roles;
+
+        return $roles;
     }
 
-    public function setRoles($roles): self
+    public function setRoles($roles)
     {
-        $this->roles = $roles;
+        if (is_array($roles)) {
+            $this->roles = implode(',', $roles);
+        }
+        if (is_string($roles)) {
+            $this->roles = $roles;
+        }
 
-        return $this;
+        return $this->roles;
     }
 
     public function getSalt()

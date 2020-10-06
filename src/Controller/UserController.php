@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Exception\UserException;
 use App\Form\UserType;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -68,19 +69,14 @@ class UserController extends AbstractController
                 'error' => $userException
             ]);
         }
-
-        return $this->json(['data' => 'casa']);
     }
 
     /**
      * @Route("/", name="index", methods={"GET"})
+     * @param UserRepository $userRepository
      */
-    public function index(Request $request)
+    public function index(UserRepository $userRepository)
     {
-        $jsonData = $this->transformStringToJson($request);
-        return $this->json([
-            'message' => $jsonData,
-            'path' => 'src/Controller/UserController.php',
-        ]);
+        return $this->json($userRepository->findAll());
     }
 }
