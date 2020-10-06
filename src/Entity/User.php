@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use JsonSerializable;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -23,16 +23,26 @@ class User implements JsonSerializable, UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="o nome não pode ser nulo", payload={"severity"="error"})
+     * @Assert\Type(type="string")
      */
     private string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(
+     *     message="O email '{{ value }}' não é um email valido"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="a senha não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $password;
 
@@ -43,6 +53,11 @@ class User implements JsonSerializable, UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="a senha não pode ser nulo",
+     *     payload={"severity"="error"}
+     * )
+     * @Assert\Type(type="string")
      */
     private string $roles;
 
@@ -133,12 +148,12 @@ class User implements JsonSerializable, UserInterface
         return $this;
     }
 
-    public function getRoles(): ?string
+    public function getRoles(): string
     {
         return $this->roles;
     }
 
-    public function setRoles(string $roles): self
+    public function setRoles($roles): self
     {
         $this->roles = $roles;
 
@@ -150,9 +165,9 @@ class User implements JsonSerializable, UserInterface
         // TODO: Implement getSalt() method.
     }
 
-    public function getUsername()
+    public function getUsername(): ?string
     {
-        // TODO: Implement getUsername() method.
+        return $this->email;
     }
 
     public function eraseCredentials()
@@ -160,8 +175,12 @@ class User implements JsonSerializable, UserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        // TODO: Implement jsonSerialize() method.
+        return [
+            'name' => $this->getName(),
+            'email' => $this->getEmail(),
+            'role' => $this->getRoles()
+        ];
     }
 }

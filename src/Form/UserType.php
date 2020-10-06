@@ -15,11 +15,8 @@ class UserType extends AbstractType
             ->add('name')
             ->add('email')
             ->add('password')
-            ->add('created_at')
-            ->add('updated_at')
             ->add('is_active')
-            ->add('roles')
-        ;
+            ->add('roles');
     }
 
     public function configureOptions(OptionsResolver $resolver)
