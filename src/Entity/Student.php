@@ -107,6 +107,13 @@ class Student implements JsonSerializable
     private $responsibles;
 
     /**
+     * @var Andress
+     * @ORM\OneToOne(targetEntity="App\Entity\Andress", mappedBy="student")
+     * @ORM\JoinColumn(name="andress_id", referencedColumnName="id")
+     */
+    private Andress $andress;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private DateTimeInterface $created_at;
