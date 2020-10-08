@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\StudentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use JsonSerializable;
@@ -95,6 +96,15 @@ class Student implements JsonSerializable
      * @ORM\Column(type="boolean", length=255)
      */
     private bool $status;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Entity\Responsible", mappedBy="student")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="id", referencedColumnName="student_id")
+     * })
+     */
+    private $responsibles;
 
     /**
      * @ORM\Column(type="datetime")
