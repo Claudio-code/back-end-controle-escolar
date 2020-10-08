@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
@@ -22,41 +23,71 @@ class Student implements JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="o nome não pode ser nulo", payload={"severity"="error"})
+     * @Assert\Type(type="string")
      */
     private string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(
+     *     message="O email '{{ value }}' não é um email valido"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="O cpf não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $cpf;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message=""
+     * )
+     * @Assert\Type(type="string")
      */
     private string $rg;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="o cnh não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $cnh;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="a idade não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $age;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="o sexo não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $sex;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="a etnia não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $ethnicity;
 
@@ -212,8 +243,18 @@ class Student implements JsonSerializable
         return $this;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        // TODO: Implement jsonSerialize() method.
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'email' => $this->getEmail(),
+            'cpf' => $this->getCpf(),
+            'cnh' => $this->getCnh(),
+            'rg' => $this->getRg(),
+            'age' => $this->getAge(),
+            'sex' => $this->getSex(),
+            'ethnicity' => $this->getEthnicity()
+        ];
     }
 }

@@ -20,9 +20,6 @@ class StudentType extends AbstractType
             ->add('age')
             ->add('sex')
             ->add('ethnicity')
-            ->add('status')
-            ->add('created_at')
-            ->add('updated_at')
         ;
     }
 
