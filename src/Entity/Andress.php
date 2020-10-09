@@ -10,6 +10,7 @@ use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass=AndressRepository::class)
+ * @ORM\Table(name="andresses")
  */
 class Andress
 {
@@ -52,8 +53,7 @@ class Andress
 
     /**
      * @var Student
-     * @ORM\OneToOne(targetEntity="App\Entity\Student")
-     * @ORM\JoinColumn(name="student_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Student")
      */
     private Student $student;
 

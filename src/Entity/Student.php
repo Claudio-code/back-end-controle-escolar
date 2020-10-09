@@ -107,9 +107,11 @@ class Student implements JsonSerializable
     private $responsibles;
 
     /**
-     * @var Andress
-     * @ORM\OneToOne(targetEntity="App\Entity\Andress", mappedBy="student")
-     * @ORM\JoinColumn(name="andress_id", referencedColumnName="id")
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Entity\Andress", mappedBy="student")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="id", referencedColumnName="student_id")
+     * })
      */
     private Andress $andress;
 

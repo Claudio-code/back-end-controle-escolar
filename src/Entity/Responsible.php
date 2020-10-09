@@ -10,6 +10,7 @@ use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass=ResponsibleRepository::class)
+ * @ORM\Table(name="responsibles")
  */
 class Responsible
 {
