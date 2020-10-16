@@ -6,15 +6,15 @@ use App\Entity\User;
 use App\Exception\UserException;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use DateTime;
+use DateTimeZone;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use DateTime;
-use DateTimeZone;
-use Exception;
 
 /**
  * @Route("/user", name="user_")
@@ -26,10 +26,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/", name="create", methods={"POST"})
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param ValidatorInterface $validator
-     * @return JsonResponse
+     *
      * @throws Exception
      */
     public function create(
@@ -45,10 +42,10 @@ class UserController extends AbstractController
 
             $user->setIsActive(true);
             $user->setCreatedAt(
-                new DateTime("now", new DateTimeZone('America/Sao_Paulo'))
+                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
             );
             $user->setUpdatedAt(
-                new DateTime("now", new DateTimeZone('America/Sao_Paulo'))
+                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
             );
 
             if ($errors = $this->validate($validator, $user)) {
@@ -63,18 +60,17 @@ class UserController extends AbstractController
 
             return $this->json([
                 'message' => 'Cadastrado com sucesso.',
-                'user' => $user
+                'user' => $user,
             ]);
         } catch (UserException $userException) {
             return $this->json([
-                'error' => $userException
+                'error' => $userException,
             ]);
         }
     }
 
     /**
      * @Route("/", name="index", methods={"GET"})
-     * @param UserRepository $userRepository
      */
     public function index(UserRepository $userRepository)
     {

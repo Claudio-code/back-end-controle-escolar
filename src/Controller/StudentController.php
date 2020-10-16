@@ -6,27 +6,32 @@ use App\Entity\Student;
 use App\Exception\StudentException;
 use App\Form\StudentType;
 use App\Repository\StudentRepository;
+use App\Service\StudentRegisterService;
+use DateTime;
+use DateTimeZone;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use DateTime;
-use DateTimeZone;
 
 /**
  * @Route("/student", name="student_")
  */
 class StudentController extends AbstractController
 {
-    use ErrorsValidateEntity, TransformJson;
+    use ErrorsValidateEntity;
+    use TransformJson;
+
+    private StudentRegisterService $studentRegisterService;
+
+    public function __construct(StudentRegisterService $studentRegisterService)
+    {
+    }
 
     /**
      * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
-     * @param Student $student
-     * @param Request $request
-     * @param ValidatorInterface $validator
-     * @return JsonResponse
+     *
      * @throws \Exception
      */
     public function update(Student $student, Request $request, ValidatorInterface $validator): JsonResponse
@@ -38,10 +43,10 @@ class StudentController extends AbstractController
 
             $student->setStatus(true);
             $student->setCreatedAt(
-                new DateTime("now", new DateTimeZone('America/Sao_Paulo'))
+                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
             );
             $student->setUpdatedAt(
-                new DateTime("now", new DateTimeZone('America/Sao_Paulo'))
+                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
             );
 
             if ($errors = $this->validate($validator, $student)) {
@@ -53,20 +58,18 @@ class StudentController extends AbstractController
 
             return $this->json([
                 'message' => 'Atualizado com sucesso.',
-                'student' => $student
+                'student' => $student,
             ]);
         } catch (StudentException $studentException) {
             return $this->json([
-                'error' => $studentException->getMessage()
+                'error' => $studentException->getMessage(),
             ]);
         }
     }
 
     /**
      * @Route("/", name="create", methods={"POST"})
-     * @param Request $request
-     * @param ValidatorInterface $validator
-     * @return JsonResponse
+     *
      * @throws \Exception
      */
     public function create(Request $request, ValidatorInterface $validator): JsonResponse
@@ -79,10 +82,10 @@ class StudentController extends AbstractController
 
             $student->setStatus(true);
             $student->setCreatedAt(
-                new DateTime("now", new DateTimeZone('America/Sao_Paulo'))
+                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
             );
             $student->setUpdatedAt(
-                new DateTime("now", new DateTimeZone('America/Sao_Paulo'))
+                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
             );
 
             if ($errors = $this->validate($validator, $student)) {
@@ -95,19 +98,17 @@ class StudentController extends AbstractController
 
             return $this->json([
                 'message' => 'Cadastrado com sucesso.',
-                'student' => $student
+                'student' => $student,
             ]);
         } catch (StudentException $studentException) {
             return $this->json([
-                'error' => $studentException->getMessage()
+                'error' => $studentException->getMessage(),
             ]);
         }
     }
 
     /**
      * @Route("/", name="index")
-     * @param StudentRepository $studentRepository
-     * @return JsonResponse
      */
     public function index(StudentRepository $studentRepository): JsonResponse
     {
