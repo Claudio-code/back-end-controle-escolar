@@ -108,12 +108,12 @@ class Student implements JsonSerializable
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="App\Entity\Andress", mappedBy="student")
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="student")
      * @ORM\JoinColumns({
      *     @ORM\JoinColumn(name="id", referencedColumnName="student_id")
      * })
      */
-    private Andress $andress;
+    private Address $address;
 
     /**
      * @ORM\Column(type="datetime")

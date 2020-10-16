@@ -10,9 +10,9 @@ use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass=AndressRepository::class)
- * @ORM\Table(name="andresses")
+ * @ORM\Table(name="addresses")
  */
-class Andress
+class Address
 {
     /**
      * @ORM\Id
