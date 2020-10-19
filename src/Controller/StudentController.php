@@ -27,6 +27,7 @@ class StudentController extends AbstractController
 
     public function __construct(StudentRegisterService $studentRegisterService)
     {
+        $this->studentRegisterService = $studentRegisterService;
     }
 
     /**
@@ -76,30 +77,18 @@ class StudentController extends AbstractController
     {
         try {
             $jsonData = $this->transformStringToJson($request);
-            $student = new Student();
-            $form = $this->createForm(StudentType::class, $student);
-            $form->submit($jsonData);
-
-            $student->setStatus(true);
-            $student->setCreatedAt(
-                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
-            );
-            $student->setUpdatedAt(
-                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
-            );
-
-            if ($errors = $this->validate($validator, $student)) {
-                return $this->json(['errors' => $errors]);
+            if (!array_key_exists('Student', $jsonData)) {
+                return $this->json([
+                    'error' => 'student params not found.',
+                ], 400);
             }
 
-            $doctrine = $this->getDoctrine()->getManager();
-            $doctrine->persist($student);
-            $doctrine->flush();
+            $this->studentRegisterService->execute($jsonData['Student']);
 
             return $this->json([
                 'message' => 'Cadastrado com sucesso.',
-                'student' => $student,
-            ]);
+                'student' => true,
+            ], 201);
         } catch (StudentException $studentException) {
             return $this->json([
                 'error' => $studentException->getMessage(),

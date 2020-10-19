@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
+use Symfony\Bridge\Doctrine\Form\Type\DoctrineType;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 trait ErrorsValidateEntity
 {
-    private function validate(ValidatorInterface $validator, $entity)
+    private function validate(ValidatorInterface $validator, DoctrineType $entity)
     {
         $messages = [];
         $errors = $validator->validate($entity);
