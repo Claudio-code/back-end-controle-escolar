@@ -183,4 +183,20 @@ class Responsible
 
         return $this;
     }
+
+    /**
+     * @return Student
+     */
+    public function getStudent(): Student
+    {
+        return $this->student;
+    }
+
+    /**
+     * @param Student $student
+     */
+    public function setStudent(Student $student): void
+    {
+        $this->student = $student;
+    }
 }

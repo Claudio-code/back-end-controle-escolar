@@ -21,6 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="f8b7a856-cdd7-4631-87a8-8402c65e299c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ErrorsValidateEntity.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/StudentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Responsible.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Responsible.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exception/StudentException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/StudentException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/SyncEntities.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/SyncEntities.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/StudentRegisterService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/StudentRegisterService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,6 +162,7 @@
       <workItem from="1602814439749" duration="689000" />
       <workItem from="1602819377970" duration="256000" />
       <workItem from="1602820247246" duration="11000" />
+      <workItem from="1603077217087" duration="849000" />
     </task>
     <task id="LOCAL-00001" summary="fix bug entity name">
       <created>1602819619182</created>
@@ -192,18 +202,20 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="438" y="223" key="#Notifications/0.30.1366.738@0.30.1366.738" timestamp="1602814452634" />
-    <state x="472" y="63" width="412" height="640" key="#com.intellij.ide.util.MemberChooser" timestamp="1601265151189">
-      <screen x="0" y="28" width="1366" height="708" />
+    <state x="472" y="66" width="413" height="668" key="#com.intellij.ide.util.MemberChooser" timestamp="1603077333246">
+      <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="472" y="63" width="412" height="640" key="#com.intellij.ide.util.MemberChooser/0.28.1366.708@0.28.1366.708" timestamp="1601265151189" />
+    <state x="472" y="66" width="413" height="668" key="#com.intellij.ide.util.MemberChooser/0.30.1366.738@0.30.1366.738" timestamp="1603077333246" />
     <state x="361" y="30" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602819472348">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="361" y="30" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.30.1366.738@0.30.1366.738" timestamp="1602819472348" />
-    <state x="330" y="120" width="700" height="558" key="NewPhpClassDialog" timestamp="1601946650710">
-      <screen x="0" y="28" width="1366" height="740" />
+    <state x="330" y="122" width="735" height="557" key="NewPhpClassDialog" timestamp="1603077373414">
+      <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="330" y="120" width="700" height="558" key="NewPhpClassDialog/0.28.1366.740@0.28.1366.740" timestamp="1601946650710" />
+    <state x="330" y="122" width="735" height="557" key="NewPhpClassDialog/0.30.1366.738@0.30.1366.738" timestamp="1603077373414" />
     <state x="172" y="30" key="SettingsEditor" timestamp="1602819522439">
       <screen x="0" y="30" width="1366" height="738" />
     </state>

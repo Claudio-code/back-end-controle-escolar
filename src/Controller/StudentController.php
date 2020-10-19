@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Student;
+use App\Exception\AddressException;
+use App\Exception\ResponsibleException;
 use App\Exception\StudentException;
 use App\Form\StudentType;
 use App\Repository\StudentRepository;
@@ -13,14 +15,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("/student", name="student_")
  */
 class StudentController extends AbstractController
 {
-    use ErrorsValidateEntity;
     use TransformJson;
 
     private StudentRegisterService $studentRegisterService;
@@ -35,12 +35,16 @@ class StudentController extends AbstractController
      *
      * @throws \Exception
      */
-    public function update(Student $student, Request $request, ValidatorInterface $validator): JsonResponse
+    public function update(Student $student, Request $request): JsonResponse
     {
         try {
             $jsonData = $this->transformStringToJson($request);
             $form = $this->createForm(StudentType::class, $student);
             $form->submit($jsonData);
+
+            // if ($errors = $this->validate($validator, $student)) {
+            //     return $this->json(['errors' => $errors], 400);
+            // }
 
             $student->setStatus(true);
             $student->setCreatedAt(
@@ -49,10 +53,6 @@ class StudentController extends AbstractController
             $student->setUpdatedAt(
                 new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
             );
-
-            if ($errors = $this->validate($validator, $student)) {
-                return $this->json(['errors' => $errors]);
-            }
 
             $doctrine = $this->getDoctrine()->getManager();
             $doctrine->flush();
@@ -70,29 +70,40 @@ class StudentController extends AbstractController
 
     /**
      * @Route("/", name="create", methods={"POST"})
-     *
-     * @throws \Exception
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function create(Request $request, ValidatorInterface $validator): JsonResponse
+    public function create(Request $request): JsonResponse
     {
         try {
             $jsonData = $this->transformStringToJson($request);
             if (!array_key_exists('Student', $jsonData)) {
                 return $this->json([
                     'error' => 'student params not found.',
-                ], 400);
+                ], 401);
             }
 
             $this->studentRegisterService->execute($jsonData['Student']);
 
             return $this->json([
                 'message' => 'Cadastrado com sucesso.',
-                'student' => true,
             ], 201);
         } catch (StudentException $studentException) {
             return $this->json([
                 'error' => $studentException->getMessage(),
-            ]);
+            ], $studentException->getCode());
+        } catch (AddressException $addressException) {
+            return $this->json([
+                'error' => $addressException->getMessage(),
+            ], $addressException->getCode());
+        } catch (ResponsibleException $responsibleException) {
+            return $this->json([
+                'error' => $responsibleException->getMessage(),
+            ], $responsibleException->getCode());
+        } catch (\Exception $exception) {
+            return $this->json([
+                'error' => $exception->getMessage(),
+            ], 500);
         }
     }
 

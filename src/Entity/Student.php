@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\StudentRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use DateTimeInterface;
 use JsonSerializable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StudentRepository::class)
@@ -31,8 +31,9 @@ class Student implements JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="O email não pode ser nulo")
      * @Assert\Email(
-     *     message="O email '{{ value }}' não é um email valido"
+     *     message="O email não é um email valido"
      * )
      * @Assert\Type(type="string")
      */
@@ -238,24 +239,24 @@ class Student implements JsonSerializable
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
 
@@ -273,7 +274,7 @@ class Student implements JsonSerializable
             'rg' => $this->getRg(),
             'age' => $this->getAge(),
             'sex' => $this->getSex(),
-            'ethnicity' => $this->getEthnicity()
+            'ethnicity' => $this->getEthnicity(),
         ];
     }
 }

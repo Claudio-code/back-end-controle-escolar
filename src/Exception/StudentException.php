@@ -2,18 +2,18 @@
 
 namespace App\Exception;
 
-use Throwable;
 use Exception;
+use Throwable;
 
 class StudentException extends Exception
 {
-    public function __construct(string $message = '', int $code = 0, Throwable $throwable = null)
+    public function __construct(string $message = '', int $code = 500, Throwable $throwable = null)
     {
-        parent::__construct($message, $code, $throwable);
+        parent::__construct("StudentException: {$message}", $code, $throwable);
     }
 
     public function __toString()
     {
-        return __CLASS__ . ": {$this->code}: {$this->message}";
+        return __CLASS__.": {$this->code}: {$this->message}";
     }
 }

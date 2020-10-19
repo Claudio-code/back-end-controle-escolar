@@ -4,11 +4,10 @@ namespace App\Repository;
 
 use DateTime;
 use DateTimeZone;
-use Symfony\Bridge\Doctrine\Form\Type\DoctrineType;
 
 trait SyncEntities
 {
-    public function runSync(DoctrineType $doctrineEntity): DoctrineType
+    public function runSync(object $doctrineEntity): object
     {
         $doctrineEntity->setUpdatedAt(
             new DateTime('now', new DateTimeZone('America/Sao_Paulo'))

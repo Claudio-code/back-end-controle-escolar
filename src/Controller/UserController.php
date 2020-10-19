@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class UserController extends AbstractController
 {
     use TransformJson;
-    use ErrorsValidateEntity;
+    // use ErrorsValidateEntity;
 
     /**
      * @Route("/", name="create", methods={"POST"})
@@ -48,9 +48,9 @@ class UserController extends AbstractController
                 new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
             );
 
-            if ($errors = $this->validate($validator, $user)) {
-                return $this->json(['errors' => $errors]);
-            }
+            // if ($errors = $this->validate($validator, $user)) {
+            //     return $this->json(['errors' => $errors]);
+            // }
 
             $password = $passwordEncoder->encodePassword($user, $jsonData['password']);
             $user->setPassword($password);
