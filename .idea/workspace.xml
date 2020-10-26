@@ -20,14 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8b7a856-cdd7-4631-87a8-8402c65e299c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Service/AddressRegisterService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/back-end-controle-escolar.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/back-end-controle-escolar.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/ResponsibleRegisterService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/StudentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AddressController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AddressController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ResponsibleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ResponsibleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Responsible.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Responsible.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +165,8 @@
       <workItem from="1603602288524" duration="1617000" />
       <workItem from="1603657626152" duration="3375000" />
       <workItem from="1603666644684" duration="1272000" />
-      <workItem from="1603670341196" duration="1010000" />
+      <workItem from="1603670341196" duration="2774000" />
+      <workItem from="1603685125776" duration="1706000" />
     </task>
     <task id="LOCAL-00001" summary="fix bug entity name">
       <created>1602819619182</created>
@@ -176,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602819619182</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="create crud address">
+      <created>1603671447777</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603671447777</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,7 +202,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix bug entity name" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bug entity name" />
+    <MESSAGE value="create crud address" />
+    <option name="LAST_COMMIT_MESSAGE" value="create crud address" />
   </component>
   <component name="WindowStateProjectService">
     <state x="456" y="261" width="444" height="244" key="#Composer" timestamp="1601253982159">
@@ -207,10 +214,10 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="438" y="223" key="#Notifications/0.30.1366.738@0.30.1366.738" timestamp="1602814452634" />
-    <state x="472" y="63" width="417" height="678" key="#com.intellij.ide.util.MemberChooser" timestamp="1603664781537">
+    <state x="472" y="63" width="417" height="678" key="#com.intellij.ide.util.MemberChooser" timestamp="1603686687266">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="472" y="63" width="417" height="678" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1603664781537" />
+    <state x="472" y="63" width="417" height="678" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1603686687266" />
     <state x="472" y="63" width="412" height="640" key="#com.intellij.ide.util.MemberChooser/0.28.1366.708@0.28.1366.708" timestamp="1601265151189" />
     <state x="472" y="66" width="413" height="668" key="#com.intellij.ide.util.MemberChooser/0.30.1366.738@0.30.1366.738" timestamp="1603077333246" />
     <state x="361" y="27" width="494" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603663369691">
@@ -218,10 +225,14 @@
     </state>
     <state x="361" y="27" width="494" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1366.741@0.27.1366.741" timestamp="1603663369691" />
     <state x="361" y="30" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.30.1366.738@0.30.1366.738" timestamp="1602819472348" />
-    <state x="330" y="119" width="669" height="557" key="NewPhpClassDialog" timestamp="1603663060552">
+    <state x="416" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603672423926">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="330" y="119" width="669" height="557" key="NewPhpClassDialog/0.27.1366.741@0.27.1366.741" timestamp="1603663060552" />
+    <state x="416" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1366.741@0.27.1366.741" timestamp="1603672423926" />
+    <state x="330" y="119" width="669" height="557" key="NewPhpClassDialog" timestamp="1603672059556">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="330" y="119" width="669" height="557" key="NewPhpClassDialog/0.27.1366.741@0.27.1366.741" timestamp="1603672059556" />
     <state x="330" y="120" width="700" height="558" key="NewPhpClassDialog/0.28.1366.740@0.28.1366.740" timestamp="1601946650710" />
     <state x="330" y="122" width="735" height="557" key="NewPhpClassDialog/0.30.1366.738@0.30.1366.738" timestamp="1603077373414" />
     <state x="172" y="27" width="992" height="737" key="SettingsEditor" timestamp="1603602309625">
@@ -230,6 +241,10 @@
     <state x="172" y="27" width="992" height="737" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1603602309625" />
     <state x="172" y="28" key="SettingsEditor/0.28.1366.708@0.28.1366.708" timestamp="1601266568905" />
     <state x="172" y="30" key="SettingsEditor/0.30.1366.738@0.30.1366.738" timestamp="1602819522439" />
+    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1603671459175">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1603671459175" />
     <state x="441" y="38" width="478" height="721" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601946666259">
       <screen x="0" y="28" width="1366" height="740" />
     </state>

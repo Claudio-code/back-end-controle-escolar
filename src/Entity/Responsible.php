@@ -12,7 +12,7 @@ use JsonSerializable;
  * @ORM\Entity(repositoryClass=ResponsibleRepository::class)
  * @ORM\Table(name="responsibles")
  */
-class Responsible
+class Responsible implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -68,20 +68,20 @@ class Responsible
     private bool $status;
 
     /**
-     * @var Student
+     * @var Student|null
      * @ORM\ManyToOne(targetEntity="App\Entity\Student")
      */
-    private Student $student;
+    private ?Student $student = null;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $created_at;
+    private ?DateTimeInterface $created_at = null;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $updated_at;
+    private ?DateTimeInterface $updated_at = null;
 
     public function getId(): ?int
     {
@@ -198,5 +198,19 @@ class Responsible
     public function setStudent(Student $student): void
     {
         $this->student = $student;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'email' => $this->getEmail(),
+            'parentesco' => $this->getParentesco(),
+            'cpf' => $this->getCpf(),
+            'rg' => $this->getRg(),
+            'status' => $this->getStatus(),
+            'createdAt' => $this->getCreatedAt()
+        ];
     }
 }

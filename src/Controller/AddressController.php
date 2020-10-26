@@ -40,7 +40,7 @@ class AddressController extends AbstractController
 
             return $this->json([
                 'status' => 'Atualizado com sucesso.'
-            ]);
+            ], 201);
         } catch (AddressException $addressException) {
             return $this->json([
                 'error' => $addressException->getMessage(),
@@ -69,7 +69,7 @@ class AddressController extends AbstractController
 
             return $this->json([
                 'status' => 'Cadastrado com sucesso'
-            ]);
+            ], 201);
         } catch (AddressException $addressException) {
             return $this->json([
                 'error' => $addressException->getMessage(),
@@ -90,7 +90,7 @@ class AddressController extends AbstractController
      * @param AddressRepository $addressRepository
      * @return JsonResponse
      */
-    public function index(AddressRepository $addressRepository)
+    public function index(AddressRepository $addressRepository): JsonResponse
     {
         return $this->json($addressRepository->findAll());
     }

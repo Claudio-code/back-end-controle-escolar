@@ -5,12 +5,13 @@ namespace App\Entity;
 use App\Repository\AddressRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass=AddressRepository::class)
  * @ORM\Table(name="addresses")
  */
-class Address
+class Address implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -175,5 +176,19 @@ class Address
         $this->student = $student;
 
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'country' => $this->getCountry(),
+            'city' => $this->getCity(),
+            'publicPlace' => $this->getPublicPlace(),
+            'number' => $this->getNumber(),
+            'status' => $this->getStatus(),
+            'cep' => $this->getCep(),
+            'createdAt' => $this->getCreatedAt()
+        ];
     }
 }
