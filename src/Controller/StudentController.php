@@ -32,7 +32,9 @@ class StudentController extends AbstractController
 
     /**
      * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
-     *
+     * @param Student $student
+     * @param Request $request
+     * @return JsonResponse
      * @throws \Exception
      */
     public function update(Student $student, Request $request): JsonResponse
@@ -109,6 +111,8 @@ class StudentController extends AbstractController
 
     /**
      * @Route("/", name="index")
+     * @param StudentRepository $studentRepository
+     * @return JsonResponse
      */
     public function index(StudentRepository $studentRepository): JsonResponse
     {

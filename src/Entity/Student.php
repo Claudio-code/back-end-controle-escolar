@@ -114,7 +114,7 @@ class Student implements JsonSerializable
      *     @ORM\JoinColumn(name="id", referencedColumnName="student_id")
      * })
      */
-    private Address $address;
+    private $address;
 
     /**
      * @ORM\Column(type="datetime")
@@ -125,6 +125,12 @@ class Student implements JsonSerializable
      * @ORM\Column(type="datetime")
      */
     private DateTimeInterface $updated_at;
+
+    public function __construct()
+    {
+        $this->responsibles = new ArrayCollection();
+        $this->address = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -261,6 +267,38 @@ class Student implements JsonSerializable
         $this->updated_at = $updated_at;
 
         return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getResponsibles(): ?ArrayCollection
+    {
+        return $this->responsibles;
+    }
+
+    /**
+     * @param ArrayCollection $responsibles
+     */
+    public function setResponsibles(ArrayCollection $responsibles): void
+    {
+        $this->responsibles = $responsibles;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAddress(): ?ArrayCollection
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param ArrayCollection $address
+     */
+    public function setAddress(ArrayCollection $address): void
+    {
+        $this->address = $address;
     }
 
     public function jsonSerialize(): array

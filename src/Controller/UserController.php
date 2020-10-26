@@ -26,7 +26,10 @@ class UserController extends AbstractController
 
     /**
      * @Route("/", name="create", methods={"POST"})
-     *
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param ValidatorInterface $validator
+     * @return JsonResponse
      * @throws Exception
      */
     public function create(
@@ -71,6 +74,8 @@ class UserController extends AbstractController
 
     /**
      * @Route("/", name="index", methods={"GET"})
+     * @param UserRepository $userRepository
+     * @return JsonResponse
      */
     public function index(UserRepository $userRepository)
     {

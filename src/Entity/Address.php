@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\AndressRepository;
+use App\Repository\AddressRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AndressRepository::class)
+ * @ORM\Entity(repositoryClass=AddressRepository::class)
  * @ORM\Table(name="addresses")
  */
 class Address
@@ -52,17 +52,17 @@ class Address
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Student")
      */
-    private Student $student;
+    private ?Student $student = null;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $created_at;
+    private ?DateTimeInterface $created_at = null;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $updated_at;
+    private ?DateTimeInterface $updated_at = null;
 
     public function getId(): ?int
     {
