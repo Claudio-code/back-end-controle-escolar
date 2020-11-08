@@ -210,7 +210,8 @@ class Responsible implements JsonSerializable
             'cpf' => $this->getCpf(),
             'rg' => $this->getRg(),
             'status' => $this->getStatus(),
-            'createdAt' => $this->getCreatedAt()
+            'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
+            'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
         ];
     }
 }

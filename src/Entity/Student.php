@@ -313,6 +313,10 @@ class Student implements JsonSerializable
             'age' => $this->getAge(),
             'sex' => $this->getSex(),
             'ethnicity' => $this->getEthnicity(),
+            'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
+            'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
+            'address' => $this->getAddress(),
+            'responsible' => $this->getResponsibles(),
         ];
     }
 }

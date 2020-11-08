@@ -39,10 +39,13 @@ class StudentRegisterService
         $this->errorsValidateEntityService = $errorsValidateEntityService;
     }
 
-    public function execute(array $jsonData): void
+    public function execute(array $jsonData, $student = null): void
     {
-        $student = FormFactory::create($jsonData, StudentType::class, new Student());
-
+        if (!$student) {
+            $student = FormFactory::create($jsonData, StudentType::class, new Student());
+        } else {
+            $student = FormFactory::create($jsonData, StudentType::class, $student);
+        }
         if ($errors = $this->errorsValidateEntityService->execute($student)) {
             throw new StudentException($errors, 400);
         }

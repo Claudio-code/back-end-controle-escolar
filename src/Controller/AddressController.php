@@ -94,4 +94,14 @@ class AddressController extends AbstractController
     {
         return $this->json($addressRepository->findAll());
     }
+
+    /**
+     * @Route("/{id}", name="index", methods={"GET"})
+     * @param Address $address
+     * @return JsonResponse
+     */
+    public function show(Address $address): JsonResponse
+    {
+        return $this->json($address);
+    }
 }

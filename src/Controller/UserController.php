@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Exception\UserException;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Service\ErrorsValidateEntityService;
 use DateTime;
 use DateTimeZone;
 use Exception;
@@ -22,20 +23,24 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class UserController extends AbstractController
 {
     use TransformJson;
-    // use ErrorsValidateEntity;
+
+    private ErrorsValidateEntityService $errorsValidateEntityService;
+
+    public function __construct(ErrorsValidateEntityService $errorsValidateEntityService)
+    {
+        $this->errorsValidateEntityService = $errorsValidateEntityService;
+    }
 
     /**
      * @Route("/", name="create", methods={"POST"})
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param ValidatorInterface $validator
      * @return JsonResponse
      * @throws Exception
      */
     public function create(
         Request $request,
-        UserPasswordEncoderInterface $passwordEncoder,
-        ValidatorInterface $validator
+        UserPasswordEncoderInterface $passwordEncoder
     ): JsonResponse {
         try {
             $jsonData = $this->transformStringToJson($request);
@@ -64,11 +69,11 @@ class UserController extends AbstractController
             return $this->json([
                 'message' => 'Cadastrado com sucesso.',
                 'user' => $user,
-            ]);
+            ], 201);
         } catch (UserException $userException) {
             return $this->json([
-                'error' => $userException,
-            ]);
+                'error' => $userException->getMessage(),
+            ], $userException->getCode());
         }
     }
 
@@ -80,5 +85,15 @@ class UserController extends AbstractController
     public function index(UserRepository $userRepository)
     {
         return $this->json($userRepository->findAll());
+    }
+
+    /**
+     * @Route("/{id}", name="index", methods={"GET"})
+     * @param User $user
+     * @return JsonResponse
+     */
+    public function show(User $user): JsonResponse
+    {
+        return $this->json($user);
     }
 }

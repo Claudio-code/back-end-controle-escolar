@@ -94,4 +94,14 @@ class ResponsibleController extends AbstractController
     {
         return $this->json($responsibleRepository->findAll());
     }
+
+    /**
+     * @Route("/{id}", name="findAll", methods={"GET"})
+     * @param Responsible $responsible
+     * @return JsonResponse
+     */
+    public function show(Responsible $responsible): JsonResponse
+    {
+        return $this->json($responsible);
+    }
 }

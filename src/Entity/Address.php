@@ -188,7 +188,8 @@ class Address implements JsonSerializable
             'number' => $this->getNumber(),
             'status' => $this->getStatus(),
             'cep' => $this->getCep(),
-            'createdAt' => $this->getCreatedAt()
+            'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
+            'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
         ];
     }
 }

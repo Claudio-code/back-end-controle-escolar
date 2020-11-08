@@ -41,32 +41,22 @@ class StudentController extends AbstractController
     {
         try {
             $jsonData = $this->transformStringToJson($request);
-            $form = $this->createForm(StudentType::class, $student);
-            $form->submit($jsonData);
+            if (!array_key_exists('Student', $jsonData)) {
+                return $this->json([
+                    'error' => 'student params not found.',
+                ], 401);
+            }
 
-            // if ($errors = $this->validate($validator, $student)) {
-            //     return $this->json(['errors' => $errors], 400);
-            // }
-
-            $student->setStatus(true);
-            $student->setCreatedAt(
-                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
-            );
-            $student->setUpdatedAt(
-                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
-            );
-
-            $doctrine = $this->getDoctrine()->getManager();
-            $doctrine->flush();
+            $this->studentRegisterService->execute($jsonData['Student']);
 
             return $this->json([
                 'message' => 'Atualizado com sucesso.',
                 'student' => $student,
-            ]);
+            ], 201);
         } catch (StudentException $studentException) {
             return $this->json([
                 'error' => $studentException->getMessage(),
-            ]);
+            ], $studentException->getCode());
         }
     }
 
@@ -110,12 +100,22 @@ class StudentController extends AbstractController
     }
 
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="index", methods={"GET"})
      * @param StudentRepository $studentRepository
      * @return JsonResponse
      */
     public function index(StudentRepository $studentRepository): JsonResponse
     {
         return $this->json($studentRepository->findAll());
+    }
+
+    /**
+     * @Route("/{id}", name="show", methods={"GET"})
+     * @param Student $student
+     * @return JsonResponse
+     */
+    public function show(Student $student): JsonResponse
+    {
+        return $this->json($student);
     }
 }
