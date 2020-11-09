@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f8b7a856-cdd7-4631-87a8-8402c65e299c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Student.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +165,12 @@
       <workItem from="1604850144105" duration="1356000" />
       <workItem from="1604851606982" duration="1887000" />
       <workItem from="1604871506144" duration="2681000" />
-      <workItem from="1604877481196" duration="5475000" />
+      <workItem from="1604877481196" duration="6552000" />
+      <workItem from="1604891152993" duration="150000" />
+      <workItem from="1604891315090" duration="80000" />
+      <workItem from="1604891475918" duration="153000" />
+      <workItem from="1604891636751" duration="58000" />
+      <workItem from="1604892247877" duration="1049000" />
     </task>
     <task id="LOCAL-00001" summary="fix bug entity name">
       <created>1602819619182</created>
@@ -189,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604879514314</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="ajusted find one studend">
+      <created>1604888900169</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1604888900169</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +223,8 @@
     <MESSAGE value="create crud address" />
     <MESSAGE value="create show item" />
     <MESSAGE value="create show item and configured cors" />
-    <option name="LAST_COMMIT_MESSAGE" value="create show item and configured cors" />
+    <MESSAGE value="ajusted find one studend" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajusted find one studend" />
   </component>
   <component name="WindowStateProjectService">
     <state x="456" y="261" width="444" height="244" key="#Composer" timestamp="1601253982159">
@@ -244,16 +256,16 @@
     <state x="330" y="119" width="669" height="557" key="NewPhpClassDialog/0.27.1366.741@0.27.1366.741" timestamp="1603672059556" />
     <state x="330" y="120" width="700" height="558" key="NewPhpClassDialog/0.28.1366.740@0.28.1366.740" timestamp="1601946650710" />
     <state x="330" y="122" width="735" height="557" key="NewPhpClassDialog/0.30.1366.738@0.30.1366.738" timestamp="1603077373414" />
-    <state x="172" y="27" width="992" height="737" key="SettingsEditor" timestamp="1603602309625">
+    <state x="172" y="27" width="992" height="737" key="SettingsEditor" timestamp="1604891676883">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="172" y="27" width="992" height="737" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1603602309625" />
+    <state x="172" y="27" width="992" height="737" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1604891676883" />
     <state x="172" y="28" key="SettingsEditor/0.28.1366.708@0.28.1366.708" timestamp="1601266568905" />
     <state x="172" y="30" key="SettingsEditor/0.30.1366.738@0.30.1366.738" timestamp="1602819522439" />
-    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1603671459175">
+    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1604888905712">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1603671459175" />
+    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1604888905712" />
     <state x="441" y="38" width="478" height="721" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601946666259">
       <screen x="0" y="28" width="1366" height="740" />
     </state>
