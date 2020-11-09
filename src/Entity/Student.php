@@ -272,7 +272,7 @@ class Student implements JsonSerializable
     /**
      * @return ArrayCollection
      */
-    public function getResponsibles(): ?ArrayCollection
+    public function getResponsibles()
     {
         return $this->responsibles;
     }
@@ -288,7 +288,7 @@ class Student implements JsonSerializable
     /**
      * @return ArrayCollection
      */
-    public function getAddress(): ?ArrayCollection
+    public function getAddress()
     {
         return $this->address;
     }
@@ -315,8 +315,8 @@ class Student implements JsonSerializable
             'ethnicity' => $this->getEthnicity(),
             'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
             'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
-            'address' => $this->getAddress(),
-            'responsible' => $this->getResponsibles(),
+            'Addresses' => $this->getAddress()->toArray(),
+            'Responsibles' => $this->getResponsibles()->toArray(),
         ];
     }
 }

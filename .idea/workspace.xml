@@ -20,21 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8b7a856-cdd7-4631-87a8-8402c65e299c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/back-end-controle-escolar.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/back-end-controle-escolar.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AddressController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AddressController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ResponsibleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ResponsibleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/StudentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Responsible.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Responsible.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exception/UserException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/UserException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/StudentRegisterService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/StudentRegisterService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +166,7 @@
       <workItem from="1604850144105" duration="1356000" />
       <workItem from="1604851606982" duration="1887000" />
       <workItem from="1604871506144" duration="2681000" />
-      <workItem from="1604877481196" duration="1943000" />
+      <workItem from="1604877481196" duration="5475000" />
     </task>
     <task id="LOCAL-00001" summary="fix bug entity name">
       <created>1602819619182</created>
@@ -195,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603671447777</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="create show item and configured cors">
+      <created>1604879514314</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1604879514314</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +210,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix bug entity name" />
     <MESSAGE value="create crud address" />
-    <option name="LAST_COMMIT_MESSAGE" value="create crud address" />
+    <MESSAGE value="create show item" />
+    <MESSAGE value="create show item and configured cors" />
+    <option name="LAST_COMMIT_MESSAGE" value="create show item and configured cors" />
   </component>
   <component name="WindowStateProjectService">
     <state x="456" y="261" width="444" height="244" key="#Composer" timestamp="1601253982159">
