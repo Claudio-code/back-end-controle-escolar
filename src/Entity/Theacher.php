@@ -10,7 +10,7 @@ use JsonSerializable;
 /**
  * @ORM\Entity(repositoryClass=TheacherRepository::class)
  */
-class Theacher
+class Theacher implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -57,17 +57,17 @@ class Theacher
     /**
      * @ORM\Column(type="boolean")
      */
-    private $status;
+    private bool $status;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    private ?DateTimeInterface $created_at = null;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $updated_at;
+    private ?DateTimeInterface $updated_at = null;
 
     public function getId(): ?int
     {
@@ -192,5 +192,21 @@ class Theacher
         $this->updated_at = $updated_at;
 
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'email' => $this->getEmail(),
+            'rg' => $this->getRg(),
+            'cpf' => $this->getCpf(),
+            'cnh' => $this->getCnh(),
+            'age' => $this->getAge(),
+            'academicTitle' => $this->getAcademicTitle(),
+            'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
+            'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
+        ];
     }
 }
