@@ -57,6 +57,11 @@ class StudentController extends AbstractController
             return $this->json([
                 'error' => $studentException->getMessage(),
             ], $studentException->getCode());
+        } catch (\Exception $exception) {
+            return $this->json([
+                'error' => 'Ocorreu um erro generico com a atualização',
+                $request->request->all()
+            ]);
         }
     }
 

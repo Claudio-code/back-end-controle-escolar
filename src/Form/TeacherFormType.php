@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Theacher;
+use App\Entity\Teacher;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TheacherFormType extends AbstractType
+class TeacherFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -20,15 +20,13 @@ class TheacherFormType extends AbstractType
             ->add('age')
             ->add('academicTitle')
             ->add('status')
-            ->add('created_at')
-            ->add('updated_at')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Theacher::class,
+            'data_class' => Teacher::class,
         ]);
     }
 }

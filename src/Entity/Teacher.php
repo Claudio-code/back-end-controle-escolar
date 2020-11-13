@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\TheacherRepository;
+use App\Repository\TeacherRepository;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use JsonSerializable;
 
 /**
- * @ORM\Entity(repositoryClass=TheacherRepository::class)
+ * @ORM\Entity(repositoryClass=TeacherRepository::class)
  */
-class Theacher implements JsonSerializable
+class Teacher implements JsonSerializable
 {
     /**
      * @ORM\Id

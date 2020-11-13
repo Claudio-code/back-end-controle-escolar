@@ -2,25 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Theacher;
+use App\Entity\Teacher;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Theacher|null find($id, $lockMode = null, $lockVersion = null)
- * @method Theacher|null findOneBy(array $criteria, array $orderBy = null)
- * @method Theacher[]    findAll()
- * @method Theacher[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Teacher|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Teacher|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Teacher[]    findAll()
+ * @method Teacher[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TheacherRepository extends ServiceEntityRepository
+class TeacherRepository extends ServiceEntityRepository
 {
+    use SyncEntities;
+
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Theacher::class);
+        parent::__construct($registry, Teacher::class);
     }
 
     // /**
-    //  * @return Theacher[] Returns an array of Theacher objects
+    //  * @return Teacher[] Returns an array of Teacher objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +39,7 @@ class TheacherRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Theacher
+    public function findOneBySomeField($value): ?Teacher
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')
