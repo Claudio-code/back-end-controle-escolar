@@ -19,15 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b7a856-cdd7-4631-87a8-8402c65e299c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/TeacherController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exception/TeacherException.php" afterDir="false" />
+    <list default="true" id="f8b7a856-cdd7-4631-87a8-8402c65e299c" name="Default Changelist" comment="add jsonSerialized for entity">
+      <change afterPath="$PROJECT_DIR$/src/Form/DisciplineType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/TopicsType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/StudentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TheacherController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Theacher.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/TheacherFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/TeacherFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TheacherRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Discipline.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Discipline.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Topics.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Topics.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +37,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/Claudio-code/back-end-controle-escolar" />
+      </set>
+    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -137,7 +141,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -181,6 +185,9 @@
       <workItem from="1604974978023" duration="410000" />
       <workItem from="1605061682286" duration="4368000" />
       <workItem from="1605149053662" duration="1525000" />
+      <workItem from="1605464413605" duration="1137000" />
+      <workItem from="1605465564229" duration="1335000" />
+      <workItem from="1605466965759" duration="451000" />
     </task>
     <task id="LOCAL-00001" summary="fix bug entity name">
       <created>1602819619182</created>
@@ -224,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604975372455</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="create form for entities">
+      <created>1605467415455</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1605467415455</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +264,8 @@
     <MESSAGE value="ajusted find one studend" />
     <MESSAGE value="create theacher entity" />
     <MESSAGE value="add jsonSerialized for entity" />
-    <option name="LAST_COMMIT_MESSAGE" value="add jsonSerialized for entity" />
+    <MESSAGE value="create form for entities" />
+    <option name="LAST_COMMIT_MESSAGE" value="create form for entities" />
   </component>
   <component name="WindowStateProjectService">
     <state x="456" y="261" width="444" height="244" key="#Composer" timestamp="1601253982159">
@@ -261,12 +276,13 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="438" y="223" key="#Notifications/0.30.1366.738@0.30.1366.738" timestamp="1602814452634" />
-    <state x="472" y="63" width="417" height="678" key="#com.intellij.ide.util.MemberChooser" timestamp="1605149663174">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state x="2029" y="52" width="415" height="573" key="#com.intellij.ide.util.MemberChooser" timestamp="1605467011939">
+      <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="472" y="63" width="417" height="678" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1605149663174" />
     <state x="472" y="63" width="412" height="640" key="#com.intellij.ide.util.MemberChooser/0.28.1366.708@0.28.1366.708" timestamp="1601265151189" />
     <state x="472" y="66" width="413" height="668" key="#com.intellij.ide.util.MemberChooser/0.30.1366.738@0.30.1366.738" timestamp="1603077333246" />
+    <state x="2029" y="52" width="415" height="573" key="#com.intellij.ide.util.MemberChooser/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605467011939" />
     <state x="361" y="27" width="494" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1605065030586">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -276,18 +292,23 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="416" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1366.741@0.27.1366.741" timestamp="1603672423926" />
+    <state x="1892" y="98" width="858" height="853" key="CommitChangelistDialog2" timestamp="1605467415299">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="98" width="858" height="853" key="CommitChangelistDialog2/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605467415299" />
     <state x="330" y="119" width="771" height="557" key="NewPhpClassDialog" timestamp="1605065888743">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="330" y="119" width="771" height="557" key="NewPhpClassDialog/0.27.1366.741@0.27.1366.741" timestamp="1605065888743" />
     <state x="330" y="120" width="700" height="558" key="NewPhpClassDialog/0.28.1366.740@0.28.1366.740" timestamp="1601946650710" />
     <state x="330" y="122" width="735" height="557" key="NewPhpClassDialog/0.30.1366.738@0.30.1366.738" timestamp="1603077373414" />
-    <state x="172" y="27" width="992" height="737" key="SettingsEditor" timestamp="1604891676883">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state x="1608" y="0" width="1395" height="1053" key="SettingsEditor" timestamp="1605465548718">
+      <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="172" y="27" width="992" height="737" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1604891676883" />
     <state x="172" y="28" key="SettingsEditor/0.28.1366.708@0.28.1366.708" timestamp="1601266568905" />
     <state x="172" y="30" key="SettingsEditor/0.30.1366.738@0.30.1366.738" timestamp="1602819522439" />
+    <state x="1608" y="0" width="1395" height="1053" key="SettingsEditor/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605465548718" />
     <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1604975380351">
       <screen x="0" y="27" width="1366" height="741" />
     </state>

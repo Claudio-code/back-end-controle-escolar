@@ -6,11 +6,12 @@ use App\Repository\DisciplineRepository;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use JsonSerializable;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=DisciplineRepository::class)
  */
-class Discipline
+class Discipline implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -22,22 +23,32 @@ class Discipline
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $amountHours;
+    private string $amountHours;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    private ?DateTimeInterface $created_at = null;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $updated_at;
+    private ?DateTimeInterface $updated_at = null;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Topics", inversedBy="dicipline")
+     */
+    private $topics;
+
+    public function __construct()
+    {
+        $this->topics = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,5 +101,20 @@ class Discipline
         $this->updated_at = $updated_at;
 
         return $this;
+    }
+
+    public function getTopics(): ArrayCollection
+    {
+        return $this->topics;
+    }
+
+    public function setTopics(ArrayCollection $topics): void
+    {
+        $this->topics = $topics;
+    }
+
+    public function jsonSerialize()
+    {
+        // TODO: Implement jsonSerialize() method.
     }
 }
