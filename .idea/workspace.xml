@@ -21,12 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f8b7a856-cdd7-4631-87a8-8402c65e299c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Discipline.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Discipline.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Teacher.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Topics.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Topics.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/DisciplineRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/DisciplineRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TopicsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TopicsRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/StudentRegisterService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/StudentRegisterService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +186,7 @@
       <workItem from="1605466965759" duration="1239000" />
       <workItem from="1605476571420" duration="6000" />
       <workItem from="1605478471413" duration="126000" />
-      <workItem from="1605479448574" duration="6743000" />
+      <workItem from="1605479448574" duration="7164000" />
     </task>
     <task id="LOCAL-00001" summary="fix bug entity name">
       <created>1602819619182</created>
@@ -264,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605468067651</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="make crud topics, and ajusted others entities.">
+      <created>1605486383784</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1605486383784</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,7 +295,8 @@
     <MESSAGE value="make migration" />
     <MESSAGE value="make new entities" />
     <MESSAGE value="make new exceptions for entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="make new exceptions for entities" />
+    <MESSAGE value="make crud topics, and ajusted others entities." />
+    <option name="LAST_COMMIT_MESSAGE" value="make crud topics, and ajusted others entities." />
   </component>
   <component name="WindowStateProjectService">
     <state x="456" y="261" width="444" height="244" key="#Composer" timestamp="1601253982159">
@@ -321,10 +323,10 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="416" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1366.741@0.27.1366.741" timestamp="1603672423926" />
-    <state x="1892" y="98" width="858" height="853" key="CommitChangelistDialog2" timestamp="1605468067575">
+    <state x="1892" y="98" width="858" height="853" key="CommitChangelistDialog2" timestamp="1605486383567">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state x="1892" y="98" width="858" height="853" key="CommitChangelistDialog2/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605468067575" />
+    <state x="1892" y="98" width="858" height="853" key="CommitChangelistDialog2/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605486383567" />
     <state x="1739" y="175" width="681" height="539" key="NewPhpClassDialog" timestamp="1605483124466">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
@@ -339,11 +341,11 @@
     <state x="172" y="28" key="SettingsEditor/0.28.1366.708@0.28.1366.708" timestamp="1601266568905" />
     <state x="172" y="30" key="SettingsEditor/0.30.1366.738@0.30.1366.738" timestamp="1602819522439" />
     <state x="1608" y="0" width="1395" height="1053" key="SettingsEditor/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605465548718" />
-    <state x="1757" y="154" width="800" height="525" key="Vcs.Push.Dialog.v2" timestamp="1605468072734">
+    <state x="1757" y="154" width="800" height="525" key="Vcs.Push.Dialog.v2" timestamp="1605486394247">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1604975380351" />
-    <state x="1757" y="154" width="800" height="525" key="Vcs.Push.Dialog.v2/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605468072734" />
+    <state x="1757" y="154" width="800" height="525" key="Vcs.Push.Dialog.v2/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605486394247" />
     <state x="441" y="37" width="478" height="721" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1605065737680">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
