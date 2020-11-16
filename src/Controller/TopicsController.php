@@ -35,9 +35,10 @@ class TopicsController extends AbstractController
 
         try {
             if (!array_key_exists('Topic', $jsonData)) {
-                return $this->json([
-                    'error' => 'topic params not found.',
-                ], 401);
+                throw new Exception(
+                    'Topic params not found.',
+                    401
+                );
             }
             $this->topicsRegisterService->execute($jsonData['Topic'], $topics);
 
@@ -64,9 +65,10 @@ class TopicsController extends AbstractController
 
         try {
             if (!array_key_exists('Topic', $jsonData)) {
-                return $this->json([
-                    'error' => 'topic params not found.',
-                ], 401);
+                throw new Exception(
+                    'Topic params not found.',
+                    401
+                );
             }
             $this->topicsRegisterService->execute($jsonData['Topic']);
 

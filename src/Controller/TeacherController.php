@@ -37,7 +37,7 @@ class TeacherController extends AbstractController
             if (!array_key_exists('Teacher', $jsonData)) {
                 throw new TeacherException(
                     'Parametros não enviados para registrar a displina.',
-                    400
+                    401
                 );
             }
             $this->teacherRegisterService->execute($jsonData['Teacher']);
@@ -67,7 +67,7 @@ class TeacherController extends AbstractController
             if (!array_key_exists('Teacher', $jsonData)) {
                 throw new TeacherException(
                     'Parametros não enviados para registrar a displina.',
-                    400
+                    401
                 );
             }
             $this->teacherRegisterService->execute($jsonData['Teacher'], $teacher);

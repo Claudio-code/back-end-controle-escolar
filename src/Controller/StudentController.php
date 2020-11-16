@@ -38,9 +38,10 @@ class StudentController extends AbstractController
 
         try {
             if (!array_key_exists('Student', $jsonData)) {
-                return $this->json([
-                    'error' => 'student params not found.',
-                ], 401);
+                throw new StudentException(
+                    'Student params not found.',
+                    401
+                );
             }
 
             $this->studentRegisterService->execute($jsonData['Student']);
@@ -70,9 +71,10 @@ class StudentController extends AbstractController
 
         try {
             if (!array_key_exists('Student', $jsonData)) {
-                return $this->json([
-                    'error' => 'student params not found.',
-                ], 401);
+                throw new StudentException(
+                    'Student params not found.',
+                    401
+                );
             }
 
             $this->studentRegisterService->execute($jsonData['Student']);
