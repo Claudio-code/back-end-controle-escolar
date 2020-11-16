@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TeacherRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use JsonSerializable;
@@ -68,6 +69,21 @@ class Teacher implements JsonSerializable
      * @ORM\Column(type="datetime")
      */
     private ?DateTimeInterface $updated_at = null;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Discipline", inversedBy="coordinator")
+     */
+    private ?Discipline $coordinatedDisipline = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Discipline", mappedBy="teacher")
+     */
+    private $disciplines;
+
+    public function __construct()
+    {
+        $this->disciplines = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -192,6 +208,26 @@ class Teacher implements JsonSerializable
         $this->updated_at = $updated_at;
 
         return $this;
+    }
+
+    public function getCoordinatedDisipline(): ?Discipline
+    {
+        return $this->coordinatedDisipline;
+    }
+
+    public function setCoordinatedDisipline(?Discipline $coordinatedDisipline): void
+    {
+        $this->coordinatedDisipline = $coordinatedDisipline;
+    }
+
+    public function getDisciplines(): ArrayCollection
+    {
+        return $this->disciplines;
+    }
+
+    public function setDisciplines(ArrayCollection $disciplines): void
+    {
+        $this->disciplines = $disciplines;
     }
 
     public function jsonSerialize(): array

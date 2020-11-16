@@ -46,6 +46,11 @@ class Topics implements JsonSerializable
     private ?DateTimeInterface $updated_at = null;
 
     /**
+     * @ORM\Column(type="boolean", length=255)
+     */
+    private bool $status;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Discipline", mappedBy="topics")
      */
     private $dicipline;
@@ -120,7 +125,7 @@ class Topics implements JsonSerializable
         return $this;
     }
 
-    public function getDicipline(): ArrayCollection
+    public function getDicipline()
     {
         return $this->dicipline;
     }
@@ -130,6 +135,16 @@ class Topics implements JsonSerializable
         $this->dicipline = $dicipline;
     }
 
+    public function isStatus(): bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): void
+    {
+        $this->status = $status;
+    }
+
     public function jsonSerialize(): array
     {
         return [
@@ -137,6 +152,7 @@ class Topics implements JsonSerializable
             'name' => $this->getName(),
             'description' => $this->getDescription(),
             'amountHours' => $this->getAmountHours(),
+            'disipline' => $this->getDicipline()->toArray(),
             'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
             'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
         ];

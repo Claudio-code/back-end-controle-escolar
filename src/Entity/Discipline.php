@@ -41,9 +41,24 @@ class Discipline implements JsonSerializable
     private ?DateTimeInterface $updated_at = null;
 
     /**
+     * @ORM\Column(type="boolean", length=255)
+     */
+    private bool $status;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Topics", inversedBy="dicipline")
      */
     private $topics;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Teacher", mappedBy="coordinatedDisipline")
+     */
+    private ?Teacher $coordinator = null;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Teacher", inversedBy="disciplines")
+     */
+    private ?Teacher $teacher = null;
 
     public function __construct()
     {
@@ -113,8 +128,56 @@ class Discipline implements JsonSerializable
         $this->topics = $topics;
     }
 
-    public function jsonSerialize()
+    public function getCoordinator(): ?Teacher
     {
-        // TODO: Implement jsonSerialize() method.
+        return $this->coordinator;
+    }
+
+    public function getCoordinatorName()
+    {
+        if (!$this->coordinator) {
+            return $this->coordinator->getName();
+        }
+
+        return null;
+    }
+
+    public function setCoordinator(?Teacher $coordinator): void
+    {
+        $this->coordinator = $coordinator;
+    }
+
+    public function getTeacher(): ?Teacher
+    {
+        return $this->teacher;
+    }
+
+    public function setTeacher(?Teacher $teacher): void
+    {
+        $this->teacher = $teacher;
+    }
+
+    public function isStatus(): bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): void
+    {
+        $this->status = $status;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'amountHours' => $this->getAmountHours(),
+            'topics' => $this->getTopics()->toArray(),
+            'coordinator' => $this->getCoordinator(),
+            'teacher' => $this->getTeacher(),
+            'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
+            'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
+        ];
     }
 }

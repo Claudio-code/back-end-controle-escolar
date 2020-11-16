@@ -14,6 +14,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TopicsRepository extends ServiceEntityRepository
 {
+    use SyncEntities;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Topics::class);

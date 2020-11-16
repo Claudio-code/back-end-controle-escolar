@@ -51,37 +51,39 @@ class StudentRegisterService
         }
 
         $student->setStatus(true);
-        $student->setCreatedAt(
-            new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
-        );
-
+        if (!$student->getCreatedAt()) {
+            $student->setCreatedAt(
+                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
+            );
+        }
         $student = $this->studentRepository->runSync($student);
 
         if (array_key_exists('Address', $jsonData)) {
             $address = FormFactory::create($jsonData['Address'], AddressType::class, new Address());
-
             if ($errors = $this->errorsValidateEntityService->execute($address)) {
                 throw new AddressException($errors, 400);
             }
 
             $address->setStudent($student);
-            $address->setCreatedAt(
-                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
-            );
+            if (!$address->getCreatedAt()) {
+                $address->setCreatedAt(
+                    new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
+                );
+            }
             $this->addressRepository->runSync($address);
         }
-
         if (array_key_exists('Responsible', $jsonData)) {
             $responsible = FormFactory::create($jsonData['Responsible'], ResponsibleType::class, new Responsible());
-
             if ($errors = $this->errorsValidateEntityService->execute($responsible)) {
                 throw new ResponsibleException($errors, 400);
             }
 
             $responsible->setStudent($student);
-            $responsible->setCreatedAt(
-                new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
-            );
+            if (!$responsible->getCreatedAt()) {
+                $responsible->setCreatedAt(
+                    new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
+                );
+            }
             $this->responsibleRepository->runSync($responsible);
         }
     }
