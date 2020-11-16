@@ -28,9 +28,6 @@ class AddressController extends AbstractController
 
     /**
      * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
-     * @param Address $address
-     * @param Request $request
-     * @return JsonResponse
      */
     public function update(Address $address, Request $request): JsonResponse
     {
@@ -39,7 +36,7 @@ class AddressController extends AbstractController
             $this->addressRegisterService->execute($jsonData, $address);
 
             return $this->json([
-                'status' => 'Atualizado com sucesso.'
+                'status' => 'Atualizado com sucesso.',
             ], 201);
         } catch (AddressException $addressException) {
             return $this->json([
@@ -58,8 +55,6 @@ class AddressController extends AbstractController
 
     /**
      * @Route("/", name="create", methods={"POST"})
-     * @param Request $request
-     * @return JsonResponse
      */
     public function create(Request $request): JsonResponse
     {
@@ -68,7 +63,7 @@ class AddressController extends AbstractController
             $this->addressRegisterService->execute($jsonData);
 
             return $this->json([
-                'status' => 'Cadastrado com sucesso'
+                'status' => 'Cadastrado com sucesso',
             ], 201);
         } catch (AddressException $addressException) {
             return $this->json([
@@ -87,8 +82,6 @@ class AddressController extends AbstractController
 
     /**
      * @Route("/", name="index", methods={"GET"})
-     * @param AddressRepository $addressRepository
-     * @return JsonResponse
      */
     public function index(AddressRepository $addressRepository): JsonResponse
     {
@@ -97,8 +90,6 @@ class AddressController extends AbstractController
 
     /**
      * @Route("/{id}", name="index", methods={"GET"})
-     * @param Address $address
-     * @return JsonResponse
      */
     public function show(Address $address): JsonResponse
     {

@@ -28,9 +28,6 @@ class ResponsibleController extends AbstractController
 
     /**
      * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
-     * @param Responsible $responsible
-     * @param Request $request
-     * @return JsonResponse
      */
     public function update(Responsible $responsible, Request $request): JsonResponse
     {
@@ -39,7 +36,7 @@ class ResponsibleController extends AbstractController
             $this->responsibleRegisterService->execute($jsonData, $responsible);
 
             return $this->json([
-                'status' => 'Atualizado com sucesso.'
+                'status' => 'Atualizado com sucesso.',
             ], 201);
         } catch (ResponsibleException $responsibleException) {
             return $this->json([
@@ -58,8 +55,6 @@ class ResponsibleController extends AbstractController
 
     /**
      * @Route("/", name="create", methods={"POST"})
-     * @param Request $request
-     * @return JsonResponse
      */
     public function create(Request $request): JsonResponse
     {
@@ -68,7 +63,7 @@ class ResponsibleController extends AbstractController
             $this->responsibleRegisterService->execute($jsonData);
 
             return $this->json([
-                'status' => 'Cadastrado com sucesso.'
+                'status' => 'Cadastrado com sucesso.',
             ], 201);
         } catch (ResponsibleException $responsibleException) {
             return $this->json([
@@ -87,8 +82,6 @@ class ResponsibleController extends AbstractController
 
     /**
      * @Route("/", name="findAll", methods={"GET"})
-     * @param ResponsibleRepository $responsibleRepository
-     * @return JsonResponse
      */
     public function index(ResponsibleRepository $responsibleRepository): JsonResponse
     {
@@ -97,8 +90,6 @@ class ResponsibleController extends AbstractController
 
     /**
      * @Route("/{id}", name="findAll", methods={"GET"})
-     * @param Responsible $responsible
-     * @return JsonResponse
      */
     public function show(Responsible $responsible): JsonResponse
     {

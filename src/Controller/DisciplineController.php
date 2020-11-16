@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Entity\Discipline;
 use App\Exception\DisciplineException;
 use App\Repository\DisciplineRepository;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Exception;
 
 /**
  * @Route("/discipline", name="discipline_")
@@ -20,14 +20,12 @@ class DisciplineController extends AbstractController
 
     /**
      * @Route("/", name="create", methods={"POST"})
-     * @param Request $request
-     * @return JsonResponse
      */
     public function create(Request $request): JsonResponse
     {
         try {
             return $this->json([
-                'status' => 'Disiplina criada com sucesso'
+                'status' => 'Disiplina criada com sucesso',
             ]);
         } catch (DisciplineException $disciplineException) {
             return $this->json([
@@ -42,8 +40,6 @@ class DisciplineController extends AbstractController
 
     /**
      * @Route("/", name="index", methods={"GET"})
-     * @param DisciplineRepository $disciplineRepository
-     * @return JsonResponse
      */
     public function index(DisciplineRepository $disciplineRepository): JsonResponse
     {
@@ -52,8 +48,6 @@ class DisciplineController extends AbstractController
 
     /**
      * @Route("/{id}", name="show", methods={"GET"})
-     * @param Discipline $discipline
-     * @return JsonResponse
      */
     public function show(Discipline $discipline): JsonResponse
     {

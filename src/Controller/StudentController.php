@@ -6,11 +6,8 @@ use App\Entity\Student;
 use App\Exception\AddressException;
 use App\Exception\ResponsibleException;
 use App\Exception\StudentException;
-use App\Form\StudentType;
 use App\Repository\StudentRepository;
 use App\Service\StudentRegisterService;
-use DateTime;
-use DateTimeZone;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,9 +29,7 @@ class StudentController extends AbstractController
 
     /**
      * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
-     * @param Student $student
-     * @param Request $request
-     * @return JsonResponse
+     *
      * @throws \Exception
      */
     public function update(Student $student, Request $request): JsonResponse
@@ -60,15 +55,13 @@ class StudentController extends AbstractController
         } catch (\Exception $exception) {
             return $this->json([
                 'error' => 'Ocorreu um erro generico com a atualização',
-                $request->request->all()
+                $request->request->all(),
             ]);
         }
     }
 
     /**
      * @Route("/", name="create", methods={"POST"})
-     * @param Request $request
-     * @return JsonResponse
      */
     public function create(Request $request): JsonResponse
     {
@@ -106,8 +99,6 @@ class StudentController extends AbstractController
 
     /**
      * @Route("/", name="index", methods={"GET"})
-     * @param StudentRepository $studentRepository
-     * @return JsonResponse
      */
     public function index(StudentRepository $studentRepository): JsonResponse
     {
@@ -116,8 +107,6 @@ class StudentController extends AbstractController
 
     /**
      * @Route("/{id}", name="show", methods={"GET"})
-     * @param Student $student
-     * @return JsonResponse
      */
     public function show(Student $student): JsonResponse
     {

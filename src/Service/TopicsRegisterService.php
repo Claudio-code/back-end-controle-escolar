@@ -30,7 +30,7 @@ class TopicsRegisterService
 
     public function execute(array $jsonData, $topics = null): void
     {
-        if ($topics === null) {
+        if (null === $topics) {
             $topics = FormFactory::create($jsonData, TopicsType::class, new Topics());
         } else {
             $topics = FormFactory::create($jsonData, TopicsType::class, $topics);

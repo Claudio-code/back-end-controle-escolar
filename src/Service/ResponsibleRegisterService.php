@@ -54,5 +54,4 @@ class ResponsibleRegisterService
 
         $this->responsibleRepository->runSync($responsible);
     }
-
 }

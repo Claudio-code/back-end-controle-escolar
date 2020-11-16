@@ -3,14 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Topics;
+use App\Exception\TopicsException;
 use App\Repository\TopicsRepository;
 use App\Service\TopicsRegisterService;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use App\Exception\TopicsException;
-use Exception;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/topics", name="topics_")
@@ -28,13 +28,11 @@ class TopicsController extends AbstractController
 
     /**
      * @Route("/{id}", name="update", methods={"PATCH", "PUT"})
-     * @param Topics $topics
-     * @param Request $request
-     * @return JsonResponse
      */
     public function update(Topics $topics, Request $request): JsonResponse
     {
         $jsonData = $this->transformStringToJson($request);
+
         try {
             if (!array_key_exists('Topic', $jsonData)) {
                 return $this->json([
@@ -59,12 +57,11 @@ class TopicsController extends AbstractController
 
     /**
      * @Route("/", name="create", methods={"POST"})
-     * @param Request $request
-     * @return JsonResponse
      */
     public function create(Request $request): JsonResponse
     {
         $jsonData = $this->transformStringToJson($request);
+
         try {
             if (!array_key_exists('Topic', $jsonData)) {
                 return $this->json([
@@ -89,8 +86,6 @@ class TopicsController extends AbstractController
 
     /**
      * @Route("/", name="index", methods={"GET"})
-     * @param TopicsRepository $topicsRepository
-     * @return JsonResponse
      */
     public function index(TopicsRepository $topicsRepository): JsonResponse
     {
@@ -99,8 +94,6 @@ class TopicsController extends AbstractController
 
     /**
      * @Route("/{id}", name="show", methods={"GET"})
-     * @param Topics $topics
-     * @return JsonResponse
      */
     public function show(Topics $topics): JsonResponse
     {

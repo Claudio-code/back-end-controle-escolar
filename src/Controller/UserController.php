@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("/user", name="user_")
@@ -33,9 +32,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/", name="create", methods={"POST"})
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @return JsonResponse
+     *
      * @throws Exception
      */
     public function create(
@@ -79,7 +76,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/", name="index", methods={"GET"})
-     * @param UserRepository $userRepository
+     *
      * @return JsonResponse
      */
     public function index(UserRepository $userRepository)
@@ -89,8 +86,6 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="index", methods={"GET"})
-     * @param User $user
-     * @return JsonResponse
      */
     public function show(User $user): JsonResponse
     {

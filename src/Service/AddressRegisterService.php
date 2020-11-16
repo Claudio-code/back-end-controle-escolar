@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-
 use App\Entity\Address;
 use App\Exception\StudentException;
 use App\Form\AddressType;
@@ -55,5 +54,4 @@ class AddressRegisterService
 
         $this->addressRepository->runSync($address);
     }
-
 }

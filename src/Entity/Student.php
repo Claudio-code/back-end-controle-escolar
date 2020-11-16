@@ -277,9 +277,6 @@ class Student implements JsonSerializable
         return $this->responsibles;
     }
 
-    /**
-     * @param ArrayCollection $responsibles
-     */
     public function setResponsibles(ArrayCollection $responsibles): void
     {
         $this->responsibles = $responsibles;
@@ -293,9 +290,6 @@ class Student implements JsonSerializable
         return $this->address;
     }
 
-    /**
-     * @param ArrayCollection $address
-     */
     public function setAddress(ArrayCollection $address): void
     {
         $this->address = $address;

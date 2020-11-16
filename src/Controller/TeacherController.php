@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Exception\TeacherException;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Exception;
 
 /**
  * @Route("/teacher", name="theacher_")
@@ -18,17 +18,15 @@ class TeacherController extends AbstractController
 
     /**
      * @Route("/", name="create", methods={"POST"})
-     * @param Request $request
-     * @return JsonResponse
      */
     public function create(Request $request): JsonResponse
     {
         $jsonData = $this->transformStringToJson($request);
-        try {
 
+        try {
             return $this->json([
                 'status' => 'Welcome to your new controller!',
-                $jsonData
+                $jsonData,
             ]);
         } catch (TeacherException $teacherException) {
             return $this->json([

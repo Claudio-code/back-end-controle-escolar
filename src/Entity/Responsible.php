@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\ResponsibleRepository;
-use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
+use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ResponsibleRepository::class)
@@ -68,7 +68,6 @@ class Responsible implements JsonSerializable
     private bool $status;
 
     /**
-     * @var Student|null
      * @ORM\ManyToOne(targetEntity="App\Entity\Student")
      */
     private ?Student $student = null;
@@ -160,41 +159,35 @@ class Responsible implements JsonSerializable
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
 
         return $this;
     }
 
-    /**
-     * @return Student
-     */
     public function getStudent(): Student
     {
         return $this->student;
     }
 
-    /**
-     * @param Student $student
-     */
     public function setStudent(Student $student): void
     {
         $this->student = $student;

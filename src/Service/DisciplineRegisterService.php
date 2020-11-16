@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-
 use App\Repository\DisciplineRepository;
 use App\Repository\TeacherRepository;
 use App\Repository\TopicsRepository;
@@ -20,9 +19,8 @@ class DisciplineRegisterService
         TeacherRepository $teacherRepository,
         DisciplineRepository $disciplineRepository
     ) {
-       $this->disciplineRepository = $disciplineRepository;
-       $this->topicsRepository = $topicsRepository;
-       $this->teacherRepository = $teacherRepository;
+        $this->disciplineRepository = $disciplineRepository;
+        $this->topicsRepository = $topicsRepository;
+        $this->teacherRepository = $teacherRepository;
     }
-
 }
