@@ -49,21 +49,37 @@ class Teacher implements JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="O rg não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $rg;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="o cnh não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $cnh;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="a idade não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $age;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="o titulo academico não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
      */
     private string $academicTitle;
 

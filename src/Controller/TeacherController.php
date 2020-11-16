@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Teacher;
 use App\Exception\TeacherException;
 use App\Repository\TeacherRepository;
+use App\Service\TeacherRegisterService;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,6 +19,13 @@ class TeacherController extends AbstractController
 {
     use TransformJson;
 
+    private TeacherRegisterService $teacherRegisterService;
+
+    public function __construct(TeacherRegisterService $teacherRegisterService)
+    {
+        $this->teacherRegisterService = $teacherRegisterService;
+    }
+
     /**
      * @Route("/", name="create", methods={"POST"})
      */
@@ -26,10 +34,17 @@ class TeacherController extends AbstractController
         $jsonData = $this->transformStringToJson($request);
 
         try {
+            if (!array_key_exists('Teacher', $jsonData)) {
+                throw new TeacherException(
+                    'Parametros não enviados para registrar a displina.',
+                    400
+                );
+            }
+            $this->teacherRegisterService->execute($jsonData['Teacher']);
+
             return $this->json([
-                'status' => 'Welcome to your new controller!',
-                $jsonData,
-            ]);
+                'status' => 'Criado uma nova disiplina.',
+            ], 201);
         } catch (TeacherException $teacherException) {
             return $this->json([
                 'error' => $teacherException->getMessage(),
@@ -42,17 +57,24 @@ class TeacherController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="update", methods={"PUT"})
+     * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
      */
-    public function update(Request $request): JsonResponse
+    public function update(Teacher $teacher, Request $request): JsonResponse
     {
         $jsonData = $this->transformStringToJson($request);
 
         try {
+            if (!array_key_exists('Teacher', $jsonData)) {
+                throw new TeacherException(
+                    'Parametros não enviados para registrar a displina.',
+                    400
+                );
+            }
+            $this->teacherRegisterService->execute($jsonData['Teacher'], $teacher);
+
             return $this->json([
-                'status' => 'Welcome to your new controller!',
-                $jsonData,
-            ]);
+                'status' => 'atualizada a disiplina com sucesso.',
+            ], 201);
         } catch (TeacherException $teacherException) {
             return $this->json([
                 'error' => $teacherException->getMessage(),

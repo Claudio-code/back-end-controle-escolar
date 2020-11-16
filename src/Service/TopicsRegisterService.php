@@ -28,9 +28,9 @@ class TopicsRegisterService
         $this->errorsValidateEntityService = $errorsValidateEntityService;
     }
 
-    public function execute(array $jsonData, $topics = null): void
+    public function execute(array $jsonData, ?Topics $topics = null): void
     {
-        if (null === $topics) {
+        if (!$topics) {
             $topics = FormFactory::create($jsonData, TopicsType::class, new Topics());
         } else {
             $topics = FormFactory::create($jsonData, TopicsType::class, $topics);

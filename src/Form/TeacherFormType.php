@@ -19,7 +19,6 @@ class TeacherFormType extends AbstractType
             ->add('cnh')
             ->add('age')
             ->add('academicTitle')
-            ->add('status')
         ;
     }
 

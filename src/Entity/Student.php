@@ -51,7 +51,7 @@ class Student implements JsonSerializable
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
-     *     message=""
+     *     message="O rg não pode ser nulo"
      * )
      * @Assert\Type(type="string")
      */
