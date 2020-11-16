@@ -39,8 +39,9 @@ class UserController extends AbstractController
         Request $request,
         UserPasswordEncoderInterface $passwordEncoder
     ): JsonResponse {
+        $jsonData = $this->transformStringToJson($request);
+
         try {
-            $jsonData = $this->transformStringToJson($request);
             $user = new User();
             $form = $this->createForm(UserType::class, $user);
             $form->submit($jsonData);

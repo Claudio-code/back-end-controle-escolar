@@ -34,8 +34,9 @@ class StudentController extends AbstractController
      */
     public function update(Student $student, Request $request): JsonResponse
     {
+        $jsonData = $this->transformStringToJson($request);
+
         try {
-            $jsonData = $this->transformStringToJson($request);
             if (!array_key_exists('Student', $jsonData)) {
                 return $this->json([
                     'error' => 'student params not found.',
@@ -65,8 +66,9 @@ class StudentController extends AbstractController
      */
     public function create(Request $request): JsonResponse
     {
+        $jsonData = $this->transformStringToJson($request);
+
         try {
-            $jsonData = $this->transformStringToJson($request);
             if (!array_key_exists('Student', $jsonData)) {
                 return $this->json([
                     'error' => 'student params not found.',

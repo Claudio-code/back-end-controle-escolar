@@ -31,8 +31,9 @@ class AddressController extends AbstractController
      */
     public function update(Address $address, Request $request): JsonResponse
     {
+        $jsonData = $this->transformStringToJson($request);
+
         try {
-            $jsonData = $this->transformStringToJson($request);
             $this->addressRegisterService->execute($jsonData, $address);
 
             return $this->json([
@@ -58,8 +59,9 @@ class AddressController extends AbstractController
      */
     public function create(Request $request): JsonResponse
     {
+        $jsonData = $this->transformStringToJson($request);
+
         try {
-            $jsonData = $this->transformStringToJson($request);
             $this->addressRegisterService->execute($jsonData);
 
             return $this->json([

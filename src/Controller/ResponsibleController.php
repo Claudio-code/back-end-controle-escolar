@@ -31,8 +31,9 @@ class ResponsibleController extends AbstractController
      */
     public function update(Responsible $responsible, Request $request): JsonResponse
     {
+        $jsonData = $this->transformStringToJson($request);
+
         try {
-            $jsonData = $this->transformStringToJson($request);
             $this->responsibleRegisterService->execute($jsonData, $responsible);
 
             return $this->json([
@@ -58,8 +59,9 @@ class ResponsibleController extends AbstractController
      */
     public function create(Request $request): JsonResponse
     {
+        $jsonData = $this->transformStringToJson($request);
+
         try {
-            $jsonData = $this->transformStringToJson($request);
             $this->responsibleRegisterService->execute($jsonData);
 
             return $this->json([
@@ -81,7 +83,7 @@ class ResponsibleController extends AbstractController
     }
 
     /**
-     * @Route("/", name="findAll", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index(ResponsibleRepository $responsibleRepository): JsonResponse
     {
@@ -89,7 +91,7 @@ class ResponsibleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="findAll", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET"})
      */
     public function show(Responsible $responsible): JsonResponse
     {

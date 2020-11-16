@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Teacher;
 use App\Exception\TeacherException;
+use App\Repository\TeacherRepository;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -40,13 +42,41 @@ class TeacherController extends AbstractController
     }
 
     /**
+     * @Route("/{id}", name="update", methods={"PUT"})
+     */
+    public function update(Request $request): JsonResponse
+    {
+        $jsonData = $this->transformStringToJson($request);
+
+        try {
+            return $this->json([
+                'status' => 'Welcome to your new controller!',
+                $jsonData,
+            ]);
+        } catch (TeacherException $teacherException) {
+            return $this->json([
+                'error' => $teacherException->getMessage(),
+            ], $teacherException->getCode());
+        } catch (Exception $exception) {
+            return $this->json([
+                'error' => 'Ocorreu um erro generico com o cadastro',
+            ], 500);
+        }
+    }
+
+    /**
      * @Route("/", name="index", methods={"GET"})
      */
-    public function index(): JsonResponse
+    public function index(TeacherRepository $teacherRepository): JsonResponse
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/TheacherController.php',
-        ]);
+        return $this->json($teacherRepository->findAll());
+    }
+
+    /**
+     * @Route("/{id}", name="show", methods={"GET"})
+     */
+    public function show(Teacher $teacher): JsonResponse
+    {
+        return $this->json($teacher);
     }
 }
