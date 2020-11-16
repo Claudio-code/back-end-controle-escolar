@@ -21,6 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f8b7a856-cdd7-4631-87a8-8402c65e299c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/StudentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TeacherController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TeacherController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TopicsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TopicsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Discipline.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Discipline.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Topics.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Topics.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +191,9 @@
       <workItem from="1605466965759" duration="1239000" />
       <workItem from="1605476571420" duration="6000" />
       <workItem from="1605478471413" duration="126000" />
-      <workItem from="1605479448574" duration="7164000" />
+      <workItem from="1605479448574" duration="7362000" />
+      <workItem from="1605495535306" duration="1553000" />
+      <workItem from="1605497124894" duration="159000" />
     </task>
     <task id="LOCAL-00001" summary="fix bug entity name">
       <created>1602819619182</created>
@@ -307,13 +314,13 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="438" y="223" key="#Notifications/0.30.1366.738@0.30.1366.738" timestamp="1602814452634" />
-    <state x="2029" y="52" width="415" height="573" key="#com.intellij.ide.util.MemberChooser" timestamp="1605486195739">
+    <state x="2029" y="52" width="415" height="573" key="#com.intellij.ide.util.MemberChooser" timestamp="1605497274567">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="472" y="63" width="417" height="678" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1605149663174" />
     <state x="472" y="63" width="412" height="640" key="#com.intellij.ide.util.MemberChooser/0.28.1366.708@0.28.1366.708" timestamp="1601265151189" />
     <state x="472" y="66" width="413" height="668" key="#com.intellij.ide.util.MemberChooser/0.30.1366.738@0.30.1366.738" timestamp="1603077333246" />
-    <state x="2029" y="52" width="415" height="573" key="#com.intellij.ide.util.MemberChooser/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605486195739" />
+    <state x="2029" y="52" width="415" height="573" key="#com.intellij.ide.util.MemberChooser/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605497274567" />
     <state x="361" y="27" width="494" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1605065030586">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -327,13 +334,13 @@
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="1892" y="98" width="858" height="853" key="CommitChangelistDialog2/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605486383567" />
-    <state x="1739" y="175" width="681" height="539" key="NewPhpClassDialog" timestamp="1605483124466">
+    <state x="1739" y="175" width="681" height="539" key="NewPhpClassDialog" timestamp="1605496518336">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="330" y="119" width="771" height="557" key="NewPhpClassDialog/0.27.1366.741@0.27.1366.741" timestamp="1605065888743" />
     <state x="330" y="120" width="700" height="558" key="NewPhpClassDialog/0.28.1366.740@0.28.1366.740" timestamp="1601946650710" />
     <state x="330" y="122" width="735" height="557" key="NewPhpClassDialog/0.30.1366.738@0.30.1366.738" timestamp="1603077373414" />
-    <state x="1739" y="175" width="681" height="539" key="NewPhpClassDialog/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605483124466" />
+    <state x="1739" y="175" width="681" height="539" key="NewPhpClassDialog/1366.0.1920.1080/0.252.1366.768@1366.0.1920.1080" timestamp="1605496518336" />
     <state x="1608" y="0" width="1395" height="1053" key="SettingsEditor" timestamp="1605465548718">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>

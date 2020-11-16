@@ -44,7 +44,7 @@ class TopicsController extends AbstractController
             $this->topicsRegisterService->execute($jsonData['Topic'], $topics);
 
             return $this->json([
-                'message' => 'Topico atualizado com sucesso.',
+                'status' => 'Topico atualizado com sucesso.',
             ], 201);
         } catch (TopicsException $topicsException) {
             return $this->json([
@@ -74,7 +74,7 @@ class TopicsController extends AbstractController
             $this->topicsRegisterService->execute($jsonData['Topic']);
 
             return $this->json([
-                'message' => 'Topico criado com sucesso.',
+                'status' => 'Topico criado com sucesso.',
             ], 201);
         } catch (TopicsException $topicsException) {
             return $this->json([

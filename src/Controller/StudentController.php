@@ -50,7 +50,7 @@ class StudentController extends AbstractController
             $this->studentRegisterService->execute($jsonData['Student']);
 
             return $this->json([
-                'message' => 'Atualizado com sucesso.',
+                'status' => 'Atualizado com sucesso.',
                 'student' => $student,
             ], 201);
         } catch (StudentException $studentException) {
@@ -83,7 +83,7 @@ class StudentController extends AbstractController
             $this->studentRegisterService->execute($jsonData['Student']);
 
             return $this->json([
-                'message' => 'Cadastrado com sucesso.',
+                'status' => 'Cadastrado com sucesso.',
             ], 201);
         } catch (StudentException $studentException) {
             return $this->json([

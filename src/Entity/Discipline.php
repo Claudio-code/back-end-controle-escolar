@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use JsonSerializable;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=DisciplineRepository::class)
@@ -22,11 +23,22 @@ class Discipline implements JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="o nome não pode ser nulo", payload={"severity"="error"})
+     * @Assert\Type(type="string")
      */
     private string $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="a descrição não pode ser nulo", payload={"severity"="error"})
+     * @Assert\Type(type="string")
+     */
+    private string $description;
+
+    /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="a carga horaria não pode ser nula", payload={"severity"="error"})
+     * @Assert\Type(type="integer")
      */
     private string $amountHours;
 
@@ -92,6 +104,16 @@ class Discipline implements JsonSerializable
         $this->amountHours = $amountHours;
 
         return $this;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface

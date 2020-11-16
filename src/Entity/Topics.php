@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TopicsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use JsonSerializable;
@@ -22,16 +23,22 @@ class Topics implements JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="o nome não pode ser nulo", payload={"severity"="error"})
+     * @Assert\Type(type="string")
      */
     private string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="a descrição não pode ser nulo", payload={"severity"="error"})
+     * @Assert\Type(type="string")
      */
     private string $description;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="a carga horaria não pode ser nula", payload={"severity"="error"})
+     * @Assert\Type(type="integer")
      */
     private int $amountHours;
 

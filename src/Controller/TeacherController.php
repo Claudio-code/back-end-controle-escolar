@@ -27,7 +27,7 @@ class TeacherController extends AbstractController
         try {
 
             return $this->json([
-                'message' => 'Welcome to your new controller!',
+                'status' => 'Welcome to your new controller!',
                 $jsonData
             ]);
         } catch (TeacherException $teacherException) {
