@@ -36,14 +36,14 @@ class TeacherController extends AbstractController
         try {
             if (!array_key_exists('Teacher', $jsonData)) {
                 throw new TeacherException(
-                    'Parametros não enviados para registrar a displina.',
+                    'Parametros não enviados para registrar o professor.',
                     401
                 );
             }
             $this->teacherRegisterService->execute($jsonData['Teacher']);
 
             return $this->json([
-                'status' => 'Criado uma nova disiplina.',
+                'status' => 'Criado um novo registro de professor.',
             ], 201);
         } catch (TeacherException $teacherException) {
             return $this->json([
@@ -100,5 +100,27 @@ class TeacherController extends AbstractController
     public function show(Teacher $teacher): JsonResponse
     {
         return $this->json($teacher);
+    }
+
+    /**
+     * @Route("/{id}", name="remove", methods={"DELETE"})
+     */
+    public function remove(Teacher $teacher, TeacherRepository $teacherRepository): JsonResponse
+    {
+        try {
+            $teacherRepository->runDelete($teacher);
+
+            return $this->json([
+                'message' => 'Produto removido',
+            ], 201);
+        } catch (TeacherException $teacherException) {
+            return $this->json([
+                'error' => $teacherException->getMessage(),
+            ], $teacherException->getCode());
+        } catch (Exception $exception) {
+            return $this->json([
+                'error' => 'Ocorreu um erro generico com o cadastro',
+            ], 500);
+        }
     }
 }

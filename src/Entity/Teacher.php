@@ -268,6 +268,7 @@ class Teacher implements JsonSerializable
             'cpf' => $this->getCpf(),
             'cnh' => $this->getCnh(),
             'age' => $this->getAge(),
+            'status' => $this->getStatus(),
             'academicTitle' => $this->getAcademicTitle(),
             'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
             'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
