@@ -15,6 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class DisciplineRepository extends ServiceEntityRepository
 {
     use SyncEntities;
+    use DeleteEntities;
 
     public function __construct(ManagerRegistry $registry)
     {

@@ -57,6 +57,28 @@ class TopicsController extends AbstractController
     }
 
     /**
+     * @Route("/{id}", name="remove", methods={"DELETE"})
+     */
+    public function remove(Topics $topics, TopicsRepository $topicsRepository): JsonResponse
+    {
+        try {
+            $topicsRepository->runDelete($topics);
+
+            return $this->json([
+                'message' => 'Produto removido',
+            ], 201);
+        } catch (TopicsException $topicsException) {
+            return $this->json([
+                'error' => $topicsException->getMessage(),
+            ], $topicsException->getCode());
+        } catch (Exception $exception) {
+            return $this->json([
+                'error' => 'Ocorreu um erro generico com o cadastro',
+            ], 500);
+        }
+    }
+
+    /**
      * @Route("/", name="create", methods={"POST"})
      */
     public function create(Request $request): JsonResponse
@@ -64,13 +86,13 @@ class TopicsController extends AbstractController
         $jsonData = $this->transformStringToJson($request);
 
         try {
-            if (!array_key_exists('Topic', $jsonData)) {
-                throw new Exception(
+            if (!array_key_exists('Topics', $jsonData)) {
+                throw new TopicsException(
                     'Topic params not found.',
                     401
                 );
             }
-            $this->topicsRegisterService->execute($jsonData['Topic']);
+            $this->topicsRegisterService->execute($jsonData['Topics']);
 
             return $this->json([
                 'status' => 'Topico criado com sucesso.',
