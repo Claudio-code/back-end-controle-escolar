@@ -159,7 +159,8 @@ class Topics implements JsonSerializable
             'name' => $this->getName(),
             'description' => $this->getDescription(),
             'amountHours' => $this->getAmountHours(),
-            'disipline' => $this->getDicipline()->toArray(),
+            'status' => $this->isStatus(),
+            'disciplines' => $this->getDicipline()->toArray(),
             'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
             'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
         ];

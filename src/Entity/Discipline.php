@@ -40,7 +40,7 @@ class Discipline implements JsonSerializable
      * @Assert\NotBlank(message="a carga horaria não pode ser nula", payload={"severity"="error"})
      * @Assert\Type(type="integer")
      */
-    private string $amountHours;
+    private int $amountHours;
 
     /**
      * @ORM\Column(type="datetime")
@@ -140,7 +140,7 @@ class Discipline implements JsonSerializable
         return $this;
     }
 
-    public function getTopics(): ArrayCollection
+    public function getTopics()
     {
         return $this->topics;
     }
@@ -195,9 +195,11 @@ class Discipline implements JsonSerializable
             'id' => $this->getId(),
             'name' => $this->getName(),
             'amountHours' => $this->getAmountHours(),
+            'description' => $this->getDescription(),
             'topics' => $this->getTopics()->toArray(),
             'coordinator' => $this->getCoordinator(),
             'teacher' => $this->getTeacher(),
+            'status' => $this->isStatus(),
             'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
             'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
         ];

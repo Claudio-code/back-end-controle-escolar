@@ -119,12 +119,12 @@ class Student implements JsonSerializable
     /**
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $created_at;
+    private ?DateTimeInterface $created_at = null;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $updated_at;
+    private ?DateTimeInterface $updated_at = null;
 
     public function __construct()
     {

@@ -14,9 +14,7 @@ class DisciplineType extends AbstractType
         $builder
             ->add('name')
             ->add('amountHours')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('topics')
+            ->add('description')
         ;
     }
 

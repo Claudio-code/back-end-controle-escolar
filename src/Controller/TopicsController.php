@@ -35,7 +35,7 @@ class TopicsController extends AbstractController
 
         try {
             if (!array_key_exists('Topic', $jsonData)) {
-                throw new Exception(
+                throw new TopicsException(
                     'Topic params not found.',
                     401
                 );
