@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Discipline;
 use App\Exception\DisciplineException;
+use App\Exception\TeacherException;
 use App\Repository\DisciplineRepository;
+use App\Service\AddTeacherDisciplineService;
 use App\Service\DisciplineRegisterService;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,9 +23,14 @@ class DisciplineController extends AbstractController
 
     private DisciplineRegisterService $disciplineRegisterService;
 
-    public function __construct(DisciplineRegisterService $disciplineRegisterService)
-    {
+    private AddTeacherDisciplineService $addTeacherDisciplineService;
+
+    public function __construct(
+        DisciplineRegisterService $disciplineRegisterService,
+        AddTeacherDisciplineService $addTeacherDisciplineService
+    ) {
         $this->disciplineRegisterService = $disciplineRegisterService;
+        $this->addTeacherDisciplineService = $addTeacherDisciplineService;
     }
 
     /**
@@ -117,6 +124,40 @@ class DisciplineController extends AbstractController
             return $this->json([
                 'error' => $disciplineException->getMessage(),
             ], $disciplineException->getCode());
+        } catch (Exception $exception) {
+            return $this->json([
+                'error' => 'Ocorreu um erro generico com o cadastro',
+            ], 500);
+        }
+    }
+
+    /**
+     * @Route("/addTeacher/{id}", name="add_teacher", methods={"PUT", "PATCH"})
+     */
+    public function addTeacher(Discipline $discipline, Request $request): JsonResponse
+    {
+        $jsonData = $this->transformStringToJson($request);
+
+        try {
+            if (!array_key_exists('TeacherId', $jsonData)) {
+                throw new DisciplineException(
+                    'Discipline params not found.',
+                    401
+                );
+            }
+            $this->addTeacherDisciplineService->execute($jsonData, $discipline);
+
+            return $this->json([
+                'message' => 'Adicionado o professor na disiplina.'
+            ], 201);
+        } catch (DisciplineException $disciplineException) {
+            return $this->json([
+                'error' => $disciplineException->getMessage(),
+            ], $disciplineException->getCode());
+        } catch (TeacherException $teacherException) {
+            return $this->json([
+                'error' => $teacherException->getMessage(),
+            ], $teacherException->getCode());
         } catch (Exception $exception) {
             return $this->json([
                 'error' => 'Ocorreu um erro generico com o cadastro',
