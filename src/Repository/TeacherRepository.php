@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Teacher;
+use App\Exception\TeacherException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,6 +21,19 @@ class TeacherRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Teacher::class);
+    }
+
+    public function findTeacher(int $id): Teacher
+    {
+        $teacher = $this->find($id);
+        if (!$teacher) {
+            throw new TeacherException(
+                'Esse professor não existe no sistema.',
+                401
+            );
+        }
+
+        return $teacher;
     }
 
     // /**
