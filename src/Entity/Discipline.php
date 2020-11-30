@@ -63,7 +63,7 @@ class Discipline implements JsonSerializable
     private $topics;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Teacher", mappedBy="coordinatedDisipline")
+     * @ORM\OneToOne(targetEntity="App\Entity\Teacher", inversedBy="coordinatedDisipline")
      */
     private ?Teacher $coordinator = null;
 
@@ -157,11 +157,7 @@ class Discipline implements JsonSerializable
 
     public function getCoordinatorName()
     {
-        if (!$this->coordinator) {
-            return $this->coordinator->getName();
-        }
-
-        return null;
+        return $this->coordinator;
     }
 
     public function setCoordinator(?Teacher $coordinator): void

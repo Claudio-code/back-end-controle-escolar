@@ -28,7 +28,7 @@ class AddTeacherDisciplineService
 
     public function execute(array $jsonData, Discipline $discipline): void
     {
-        $teacher = $this->teacherRepository->findTeacher($jsonData['TeacherId']);
+        $teacher = $this->teacherRepository->findTeacher(intval($jsonData['TeacherId']));
         $discipline->setTeacher($teacher);
         $this->disciplineRepository->runSync($discipline);
     }

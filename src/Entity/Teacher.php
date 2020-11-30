@@ -99,7 +99,7 @@ class Teacher implements JsonSerializable
     private ?DateTimeInterface $updated_at = null;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Discipline", inversedBy="coordinator")
+     * @ORM\OneToOne(targetEntity="App\Entity\Discipline", mappedBy="coordinator")
      */
     private ?Discipline $coordinatedDisipline = null;
 

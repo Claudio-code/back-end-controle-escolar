@@ -12,18 +12,22 @@ class AddCoordinatorDisciplineService
 
     private TeacherRepository $teacherRepository;
 
+    private DisciplineRepository $disciplineRepository;
+
     public function __construct(
         ErrorsValidateEntityService $errorsValidateEntityService,
+        DisciplineRepository $disciplineRepository,
         TeacherRepository $teacherRepository
     ) {
         $this->errorsValidateEntityService = $errorsValidateEntityService;
+        $this->disciplineRepository = $disciplineRepository;
         $this->teacherRepository = $teacherRepository;
     }
 
     public function execute(array $jsonData, Discipline $discipline): void
     {
-        $teacher = $this->teacherRepository->findTeacher($jsonData['TeacherId']);
-        $teacher->setCoordinatedDisipline($discipline);
-        $this->teacherRepository->runSync($teacher);
+        $teacher = $this->teacherRepository->findTeacher(intval($jsonData['TeacherId']));
+        $discipline->setCoordinator($teacher);
+        $this->disciplineRepository->runSync($discipline);
     }
 }
