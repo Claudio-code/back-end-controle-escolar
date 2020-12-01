@@ -2,17 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\TopicsRepository;
+use App\Repository\CourseRepository;
+use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=TopicsRepository::class)
+ * @ORM\Entity(repositoryClass=CourseRepository::class)
  */
-class Topics implements JsonSerializable
+class Course implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -36,11 +36,11 @@ class Topics implements JsonSerializable
     private string $description;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank(message="a carga horaria não pode ser nula", payload={"severity"="error"})
+     * @ORM\Column(type="integer", length=255)
+     * @Assert\NotBlank(message="o total de horas não pode ser nulo", payload={"severity"="error"})
      * @Assert\Type(type="integer")
      */
-    private int $amountHours;
+    private int $totalAmountHours;
 
     /**
      * @ORM\Column(type="datetime")
@@ -53,18 +53,19 @@ class Topics implements JsonSerializable
     private ?DateTimeInterface $updated_at = null;
 
     /**
-     * @ORM\Column(type="boolean", length=255)
+     * @ORM\ManyToMany(targetEntity="App\Entity\Discipline", inversedBy="courses")
      */
-    private bool $status;
+    private $diciplines;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Discipline", mappedBy="topics")
+     * @ORM\OneToMany(targetEntity="App\Entity\Classes", mappedBy="course")
      */
-    private $dicipline;
+    private $classes;
 
     public function __construct()
     {
-        $this->dicipline = new ArrayCollection();
+        $this->classes = new ArrayCollection();
+        $this->diciplines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -96,60 +97,72 @@ class Topics implements JsonSerializable
         return $this;
     }
 
-    public function getAmountHours(): ?int
+    public function getTotalAmountHours(): ?int
     {
-        return $this->amountHours;
+        return $this->totalAmountHours;
     }
 
-    public function setAmountHours(int $amountHours): self
+    public function setTotalAmountHours(int $totalAmountHours): self
     {
-        $this->amountHours = $amountHours;
+        $this->totalAmountHours = $totalAmountHours;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
 
         return $this;
     }
 
-    public function getDicipline()
+    /**
+     * @return ArrayCollection
+     */
+    public function getDiciplines()
     {
-        return $this->dicipline;
+        return $this->diciplines;
     }
 
-    public function setDicipline(ArrayCollection $dicipline): void
+    /**
+     * @param ArrayCollection $diciplines
+     */
+    public function setDiciplines(ArrayCollection $diciplines): void
     {
-        $this->dicipline = $dicipline;
+        $this->diciplines = $diciplines;
     }
 
-    public function isStatus(): bool
+    /**
+     * @return ArrayCollection
+     */
+    public function getClasses()
     {
-        return $this->status;
+        return $this->classes;
     }
 
-    public function setStatus(bool $status): void
+    /**
+     * @param ArrayCollection $classes
+     */
+    public function setClasses(ArrayCollection $classes): void
     {
-        $this->status = $status;
+        $this->classes = $classes;
     }
 
     public function jsonSerialize(): array
@@ -158,9 +171,9 @@ class Topics implements JsonSerializable
             'id' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
-            'amountHours' => $this->getAmountHours(),
-            'status' => $this->isStatus(),
-            'disciplines' => $this->getDicipline()->toArray(),
+            'totalAmountHours' => $this->getTotalAmountHours(),
+            'classes' => $this->getClasses()->toArray(),
+            'diciplines' => $this->getDiciplines()->toArray(),
             'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
             'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
         ];

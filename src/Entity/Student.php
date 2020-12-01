@@ -126,10 +126,16 @@ class Student implements JsonSerializable
      */
     private ?DateTimeInterface $updated_at = null;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Matriculation", mappedBy="student")
+     */
+    private $matriculations;
+
     public function __construct()
     {
         $this->responsibles = new ArrayCollection();
         $this->address = new ArrayCollection();
+        $this->matriculations = new ArrayCollection();
     }
 
     public function getId(): ?int

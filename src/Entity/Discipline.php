@@ -58,11 +58,6 @@ class Discipline implements JsonSerializable
     private bool $status;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Topics", inversedBy="dicipline")
-     */
-    private $topics;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\Teacher", inversedBy="coordinatedDisipline")
      */
     private ?Teacher $coordinator = null;
@@ -72,9 +67,14 @@ class Discipline implements JsonSerializable
      */
     private ?Teacher $teacher = null;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Course", mappedBy="diciplines")
+     */
+    private $courses;
+
     public function __construct()
     {
-        $this->topics = new ArrayCollection();
+        $this->courses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -140,16 +140,6 @@ class Discipline implements JsonSerializable
         return $this;
     }
 
-    public function getTopics()
-    {
-        return $this->topics;
-    }
-
-    public function setTopics(ArrayCollection $topics): void
-    {
-        $this->topics = $topics;
-    }
-
     public function getCoordinator(): ?Teacher
     {
         return $this->coordinator;
@@ -192,7 +182,6 @@ class Discipline implements JsonSerializable
             'name' => $this->getName(),
             'amountHours' => $this->getAmountHours(),
             'description' => $this->getDescription(),
-            'topics' => $this->getTopics()->toArray(),
             'coordinator' => $this->getCoordinator(),
             'teacher' => $this->getTeacher(),
             'status' => $this->isStatus(),
