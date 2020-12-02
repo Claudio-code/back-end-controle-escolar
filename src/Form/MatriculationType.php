@@ -13,10 +13,6 @@ class MatriculationType extends AbstractType
     {
         $builder
             ->add('academicRecord')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('student')
-            ->add('classe')
         ;
     }
 

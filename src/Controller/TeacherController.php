@@ -111,7 +111,7 @@ class TeacherController extends AbstractController
             $teacherRepository->runDelete($teacher);
 
             return $this->json([
-                'message' => 'Produto removido',
+                'message' => 'Professor removido',
             ], 201);
         } catch (TeacherException $teacherException) {
             return $this->json([

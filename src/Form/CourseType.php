@@ -15,9 +15,6 @@ class CourseType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('totalAmountHours')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('diciplines')
         ;
     }
 

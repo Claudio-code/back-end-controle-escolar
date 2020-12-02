@@ -15,9 +15,6 @@ class ClassesType extends AbstractType
             ->add('name')
             ->add('numberStudents')
             ->add('maximumStudents')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('course')
         ;
     }
 

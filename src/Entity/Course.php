@@ -55,7 +55,7 @@ class Course implements JsonSerializable
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Discipline", inversedBy="courses")
      */
-    private $diciplines;
+    private $disciplines;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Classes", mappedBy="course")
@@ -65,7 +65,7 @@ class Course implements JsonSerializable
     public function __construct()
     {
         $this->classes = new ArrayCollection();
-        $this->diciplines = new ArrayCollection();
+        $this->disciplines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -136,17 +136,19 @@ class Course implements JsonSerializable
     /**
      * @return ArrayCollection
      */
-    public function getDiciplines()
+    public function getDisciplines()
     {
-        return $this->diciplines;
+        return $this->disciplines;
     }
 
-    /**
-     * @param ArrayCollection $diciplines
-     */
-    public function setDiciplines(ArrayCollection $diciplines): void
+    public function addDiscipline(Discipline $discipline): void
     {
-        $this->diciplines = $diciplines;
+        $this->disciplines->add($discipline);
+    }
+
+    public function setDisciplines(ArrayCollection $disciplines): void
+    {
+        $this->disciplines = $disciplines;
     }
 
     /**
@@ -155,6 +157,11 @@ class Course implements JsonSerializable
     public function getClasses()
     {
         return $this->classes;
+    }
+
+    public function addClasse(Classes $classes): void
+    {
+        $this->classes->add($classes);
     }
 
     /**
@@ -173,7 +180,7 @@ class Course implements JsonSerializable
             'description' => $this->getDescription(),
             'totalAmountHours' => $this->getTotalAmountHours(),
             'classes' => $this->getClasses()->toArray(),
-            'diciplines' => $this->getDiciplines()->toArray(),
+            'diciplines' => $this->getDisciplines()->toArray(),
             'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
             'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),
         ];
