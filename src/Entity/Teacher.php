@@ -99,9 +99,9 @@ class Teacher implements JsonSerializable
     private ?DateTimeInterface $updated_at = null;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Discipline", mappedBy="coordinator")
+     * @ORM\OneToOne(targetEntity="App\Entity\Course", mappedBy="coordinator")
      */
-    private ?Discipline $coordinatedDisipline = null;
+    private ?Discipline $coordinatedCourse = null;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Discipline", mappedBy="teacher")
@@ -238,16 +238,6 @@ class Teacher implements JsonSerializable
         return $this;
     }
 
-    public function getCoordinatedDisipline(): ?Discipline
-    {
-        return $this->coordinatedDisipline;
-    }
-
-    public function setCoordinatedDisipline(?Discipline $coordinatedDisipline): void
-    {
-        $this->coordinatedDisipline = $coordinatedDisipline;
-    }
-
     public function getDisciplines(): ArrayCollection
     {
         return $this->disciplines;
@@ -256,6 +246,16 @@ class Teacher implements JsonSerializable
     public function setDisciplines(ArrayCollection $disciplines): void
     {
         $this->disciplines = $disciplines;
+    }
+
+    public function getCoordinatedCourse(): ?Discipline
+    {
+        return $this->coordinatedCourse;
+    }
+
+    public function setCoordinatedCourse(?Discipline $coordinatedCourse): void
+    {
+        $this->coordinatedCourse = $coordinatedCourse;
     }
 
     public function jsonSerialize(): array
@@ -269,6 +269,7 @@ class Teacher implements JsonSerializable
             'cnh' => $this->getCnh(),
             'age' => $this->getAge(),
             'status' => $this->getStatus(),
+            'courseCoordinated' => $this->getCoordinatedCourse(),
             'academicTitle' => $this->getAcademicTitle(),
             'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
             'updatedAt' => $this->getUpdatedAt()->format('d-m-Y'),

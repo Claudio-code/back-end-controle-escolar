@@ -6,7 +6,6 @@ use App\Entity\Discipline;
 use App\Exception\DisciplineException;
 use App\Exception\TeacherException;
 use App\Repository\DisciplineRepository;
-use App\Service\AddCoordinatorDisciplineService;
 use App\Service\AddTeacherDisciplineService;
 use App\Service\DisciplineRegisterService;
 use Exception;
@@ -26,15 +25,11 @@ class DisciplineController extends AbstractController
 
     private AddTeacherDisciplineService $addTeacherDisciplineService;
 
-    private AddCoordinatorDisciplineService $addCoordinatorDisciplineService;
-
     public function __construct(
         DisciplineRegisterService $disciplineRegisterService,
-        AddCoordinatorDisciplineService $addCoordinatorDisciplineService,
         AddTeacherDisciplineService $addTeacherDisciplineService
     ) {
         $this->disciplineRegisterService = $disciplineRegisterService;
-        $this->addCoordinatorDisciplineService = $addCoordinatorDisciplineService;
         $this->addTeacherDisciplineService = $addTeacherDisciplineService;
     }
 
@@ -129,40 +124,6 @@ class DisciplineController extends AbstractController
             return $this->json([
                 'error' => $disciplineException->getMessage(),
             ], $disciplineException->getCode());
-        } catch (Exception $exception) {
-            return $this->json([
-                'error' => 'Ocorreu um erro generico com o cadastro',
-            ], 500);
-        }
-    }
-
-    /**
-     * @Route("/addCoordinator/{id}", name="add_coordinator", methods={"PUT", "PATCH"})
-     */
-    public function addCoordinator(Discipline $discipline, Request $request): JsonResponse
-    {
-        $jsonData = $this->transformStringToJson($request);
-
-        try {
-            if (!array_key_exists('TeacherId', $jsonData)) {
-                throw new DisciplineException(
-                    'Discipline params not found.',
-                    401
-                );
-            }
-            $this->addCoordinatorDisciplineService->execute($jsonData, $discipline);
-
-            return $this->json([
-                'message' => 'Adicionado o coordenador na disiplina.'
-            ], 201);
-        } catch (DisciplineException $disciplineException) {
-            return $this->json([
-                'error' => $disciplineException->getMessage(),
-            ], $disciplineException->getCode());
-        } catch (TeacherException $teacherException) {
-            return $this->json([
-                'error' => $teacherException->getMessage(),
-            ], $teacherException->getCode());
         } catch (Exception $exception) {
             return $this->json([
                 'error' => 'Ocorreu um erro generico com o cadastro',

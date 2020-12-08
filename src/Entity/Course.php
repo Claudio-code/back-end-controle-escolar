@@ -62,6 +62,11 @@ class Course implements JsonSerializable
      */
     private $classes;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Teacher", inversedBy="coordinatedCourse")
+     */
+    private ?Teacher $coordinator = null;
+
     public function __construct()
     {
         $this->classes = new ArrayCollection();
@@ -172,6 +177,16 @@ class Course implements JsonSerializable
         $this->classes = $classes;
     }
 
+    public function getCoordinator(): ?Teacher
+    {
+        return $this->coordinator;
+    }
+
+    public function setCoordinator(?Teacher $coordinator): void
+    {
+        $this->coordinator = $coordinator;
+    }
+
     public function jsonSerialize(): array
     {
         return [
@@ -179,6 +194,7 @@ class Course implements JsonSerializable
             'name' => $this->getName(),
             'description' => $this->getDescription(),
             'totalAmountHours' => $this->getTotalAmountHours(),
+            'coordinator' => $this->getCoordinator(),
             'classes' => $this->getClasses()->toArray(),
             'diciplines' => $this->getDisciplines()->toArray(),
             'createdAt' => $this->getCreatedAt()->format('d-m-Y'),
