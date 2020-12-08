@@ -24,7 +24,7 @@ class ResponsibleRegisterService
         $this->studentRepository = $studentRepository;
     }
 
-    public function execute(array $jsonData, $responsible = null): void
+    public function execute(array $jsonData, ?Responsible $responsible = null): void
     {
         $student = $this->studentRepository->find($jsonData['student_id']);
 
@@ -42,6 +42,8 @@ class ResponsibleRegisterService
         }
         if (!$responsible) {
             $responsible = new Responsible();
+            $this->responsibleRepository->checkEmail($jsonData['email']);
+            $this->responsibleRepository->checkCpf($jsonData['cpf']);
         }
 
         $responsible = FormFactory::create($jsonData, ResponsibleType::class, $responsible);

@@ -36,6 +36,40 @@ class TeacherRepository extends ServiceEntityRepository
         return $teacher;
     }
 
+    public function checkCpf(string $cpf): void
+    {
+        $result = $this->createQueryBuilder('t')
+            ->andWhere('t.cpf = :cpf')
+            ->setParameter('cpf', $cpf)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        if (!empty($result)) {
+            throw new TeacherException(
+                'Já existe um professor com esse cpf',
+                401
+            );
+        }
+    }
+
+    public function checkEmail(string $email): void
+    {
+        $result = $this->createQueryBuilder('t')
+            ->andWhere('t.email = :email')
+            ->setParameter('email', $email)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        if (!empty($result)) {
+            throw new TeacherException(
+                'Já existe um professor com esse email',
+                401
+            );
+        }
+    }
+
     // /**
     //  * @return Teacher[] Returns an array of Teacher objects
     //  */

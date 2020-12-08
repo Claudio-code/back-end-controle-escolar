@@ -97,4 +97,26 @@ class AddressController extends AbstractController
     {
         return $this->json($address);
     }
+
+    /**
+     * @Route("/{id}", name="remove", methods={"DELETE"})
+     */
+    public function remove(Address $address, AddressRepository $addressRepository): JsonResponse
+    {
+        try {
+            $addressRepository->runDelete($address);
+
+            return $this->json([
+                'message' => 'Endereço removido.',
+            ], 201);
+        } catch (AddressException $addressException) {
+            return $this->json([
+                'error' => $addressException->getMessage(),
+            ], $addressException->getCode());
+        } catch (\Exception $exception) {
+            return $this->json([
+                'error' => 'Ocorreu um erro generico com o cadastro',
+            ], 500);
+        }
+    }
 }

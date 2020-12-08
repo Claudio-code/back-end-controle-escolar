@@ -30,29 +30,25 @@ class TeacherRegisterService
 
     public function execute(array $jsonData, ?Teacher $teacher = null): void
     {
-        if (!$teacher) {
-            $teacher = FormFactory::create(
-                $jsonData,
-                TeacherFormType::class,
-                new Teacher()
-            );
-        } else {
-            $teacher = FormFactory::create(
-                $jsonData,
-                TeacherFormType::class,
-                $teacher
-            );
-        }
-        if ($errors = $this->errorsValidateEntityService->execute($teacher)) {
+        $teacherData = FormFactory::create(
+            $jsonData,
+            TeacherFormType::class,
+            $teacher ?? new Teacher()
+        );
+        if ($errors = $this->errorsValidateEntityService->execute($teacherData)) {
             throw new TeacherException($errors, 400);
         }
+        if (!$teacher) {
+            $this->teacherRepository->checkEmail($jsonData['email']);
+            $this->teacherRepository->checkCpf($jsonData['cpf']);
+        }
 
-        $teacher->setStatus(true);
-        if (!$teacher->getCreatedAt()) {
-            $teacher->setCreatedAt(
+        $teacherData->setStatus(true);
+        if (!$teacherData->getCreatedAt()) {
+            $teacherData->setCreatedAt(
                 new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
             );
         }
-        $this->teacherRepository->runSync($teacher);
+        $this->teacherRepository->runSync($teacherData);
     }
 }

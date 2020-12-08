@@ -39,24 +39,29 @@ class StudentRegisterService
         $this->errorsValidateEntityService = $errorsValidateEntityService;
     }
 
-    public function execute(array $jsonData, $student = null): void
+    public function execute(array $jsonData, ?Student $student = null): void
     {
-        if (!$student) {
-            $student = FormFactory::create($jsonData, StudentType::class, new Student());
-        } else {
-            $student = FormFactory::create($jsonData, StudentType::class, $student);
-        }
-        if ($errors = $this->errorsValidateEntityService->execute($student)) {
+        $studentData = FormFactory::create(
+            $jsonData,
+            StudentType::class,
+            $student ?? new Student()
+        );
+
+        if ($errors = $this->errorsValidateEntityService->execute($studentData)) {
             throw new StudentException($errors, 400);
         }
 
-        $student->setStatus(true);
-        if (!$student->getCreatedAt()) {
-            $student->setCreatedAt(
+        if (!$student) {
+            $this->studentRepository->checkEmail($jsonData['email']);
+            $this->studentRepository->checkCpf($jsonData['cpf']);
+        }
+        if (!$studentData->getCreatedAt()) {
+            $studentData->setCreatedAt(
                 new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
             );
         }
-        $student = $this->studentRepository->runSync($student);
+        $studentData->setStatus(true);
+        $studentData = $this->studentRepository->runSync($studentData);
 
         if (array_key_exists('Address', $jsonData)) {
             $address = FormFactory::create($jsonData['Address'], AddressType::class, new Address());
@@ -64,7 +69,7 @@ class StudentRegisterService
                 throw new AddressException($errors, 400);
             }
 
-            $address->setStudent($student);
+            $address->setStudent($studentData);
             if (!$address->getCreatedAt()) {
                 $address->setCreatedAt(
                     new DateTime('now', new DateTimeZone('America/Sao_Paulo'))
@@ -78,7 +83,7 @@ class StudentRegisterService
                 throw new ResponsibleException($errors, 400);
             }
 
-            $responsible->setStudent($student);
+            $responsible->setStudent($studentData);
             if (!$responsible->getCreatedAt()) {
                 $responsible->setCreatedAt(
                     new DateTime('now', new DateTimeZone('America/Sao_Paulo'))

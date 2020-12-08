@@ -97,4 +97,26 @@ class ResponsibleController extends AbstractController
     {
         return $this->json($responsible);
     }
+
+    /**
+     * @Route("/{id}", name="remove", methods={"DELETE"})
+     */
+    public function remove(Responsible $responsible, ResponsibleRepository $responsibleRepository): JsonResponse
+    {
+        try {
+            $responsibleRepository->runDelete($responsible);
+
+            return $this->json([
+                'message' => 'Responsavel removido.',
+            ], 201);
+        } catch (ResponsibleException $responsibleException) {
+            return $this->json([
+                'error' => $responsibleException->getMessage(),
+            ], $responsibleException->getCode());
+        } catch (\Exception $exception) {
+            return $this->json([
+                'error' => 'Ocorreu um erro generico com o cadastro',
+            ], 500);
+        }
+    }
 }

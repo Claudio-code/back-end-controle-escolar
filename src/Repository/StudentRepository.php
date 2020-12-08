@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Student;
+use App\Exception\StudentException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,6 +21,40 @@ class StudentRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Student::class);
+    }
+
+    public function checkCpf(string $cpf): void
+    {
+        $result = $this->createQueryBuilder('s')
+            ->andWhere('s.cpf = :cpf')
+            ->setParameter('cpf', $cpf)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        if (!empty($result)) {
+            throw new StudentException(
+                'Já existe um estudante com esse cpf',
+                401
+            );
+        }
+    }
+
+    public function checkEmail(string $email): void
+    {
+        $result = $this->createQueryBuilder('s')
+            ->andWhere('s.email = :email')
+            ->setParameter('email', $email)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        if (!empty($result)) {
+            throw new StudentException(
+                'Já existe um estudante com esse email',
+                401
+            );
+        }
     }
 
     // /**

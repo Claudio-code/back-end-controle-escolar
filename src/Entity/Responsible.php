@@ -39,7 +39,7 @@ class Responsible implements JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="o parentes não pode ser nulo")
+     * @Assert\NotBlank(message="o parentesco não pode ser nulo")
      * @Assert\Type(type="string")
      */
     private string $parentesco;

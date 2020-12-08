@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Responsible;
+use App\Exception\ResponsibleException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,6 +21,40 @@ class ResponsibleRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Responsible::class);
+    }
+
+    public function checkCpf(string $cpf): void
+    {
+        $result = $this->createQueryBuilder('r')
+            ->andWhere('r.cpf = :cpf')
+            ->setParameter('cpf', $cpf)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        if (!empty($result)) {
+            throw new ResponsibleException(
+                'Já existe um responsavel com esse cpf',
+                401
+            );
+        }
+    }
+
+    public function checkEmail(string $email): void
+    {
+        $result = $this->createQueryBuilder('r')
+            ->andWhere('r.email = :email')
+            ->setParameter('email', $email)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        if (!empty($result)) {
+            throw new ResponsibleException(
+                'Já existe um responsavel com esse email',
+                401
+            );
+        }
     }
 
     // /**

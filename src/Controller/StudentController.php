@@ -29,8 +29,6 @@ class StudentController extends AbstractController
 
     /**
      * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
-     *
-     * @throws \Exception
      */
     public function update(Student $student, Request $request): JsonResponse
     {
@@ -44,7 +42,7 @@ class StudentController extends AbstractController
                 );
             }
 
-            $this->studentRegisterService->execute($jsonData['Student']);
+            $this->studentRegisterService->execute($jsonData['Student'], $student);
 
             return $this->json([
                 'status' => 'Atualizado com sucesso.',
@@ -76,7 +74,6 @@ class StudentController extends AbstractController
                     401
                 );
             }
-
             $this->studentRegisterService->execute($jsonData['Student']);
 
             return $this->json([
@@ -115,5 +112,27 @@ class StudentController extends AbstractController
     public function show(Student $student): JsonResponse
     {
         return $this->json($student);
+    }
+
+    /**
+     * @Route("/{id}", name="remove", methods={"DELETE"})
+     */
+    public function remove(Student $student, StudentRepository $studentRepository): JsonResponse
+    {
+        try {
+            $studentRepository->runDelete($student);
+
+            return $this->json([
+                'message' => 'Estudante removido.',
+            ], 201);
+        } catch (StudentException $studentException) {
+            return $this->json([
+                'error' => $studentException->getMessage(),
+            ], $studentException->getCode());
+        } catch (\Exception $exception) {
+            return $this->json([
+                'error' => 'Ocorreu um erro generico com o cadastro',
+            ], 500);
+        }
     }
 }
