@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Course;
+use App\Exception\CourseException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,6 +21,19 @@ class CourseRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Course::class);
+    }
+
+    public function findCourse(int $id): Course
+    {
+        $course = $this->find($id);
+        if (!$course) {
+            throw new CourseException(
+              'Curso não encontrado.',
+              401
+            );
+        }
+
+        return $course;
     }
 
     // /**

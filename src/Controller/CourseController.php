@@ -116,10 +116,11 @@ class CourseController extends AbstractController
             return $this->json([
                 'error' => $courseException->getMessage(),
             ], $courseException->getCode());
-        } catch (\Exception $exception) {
-            return $this->json([
-                'error' => 'Ocorreu um erro generico com o cadastro',
-            ], 500);
         }
+//        catch (\Exception $exception) {
+//            return $this->json([
+//                'error' => 'Ocorreu um erro generico com o cadastro',
+//            ], 500);
+//        }
     }
 }
