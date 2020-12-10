@@ -148,7 +148,7 @@ class DisciplineController extends AbstractController
             $this->addTeacherDisciplineService->execute($jsonData, $discipline);
 
             return $this->json([
-                'message' => 'Adicionado o professor na disiplina.'
+                'message' => 'Adicionado o professor na disiplina.',
             ], 201);
         } catch (DisciplineException $disciplineException) {
             return $this->json([

@@ -101,7 +101,7 @@ class Teacher implements JsonSerializable
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Course", mappedBy="coordinator")
      */
-    private ?Discipline $coordinatedCourse = null;
+    private ?Course $coordinatedCourse = null;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Discipline", mappedBy="teacher")
@@ -238,7 +238,7 @@ class Teacher implements JsonSerializable
         return $this;
     }
 
-    public function getDisciplines(): ArrayCollection
+    public function getDisciplines()
     {
         return $this->disciplines;
     }
@@ -248,12 +248,21 @@ class Teacher implements JsonSerializable
         $this->disciplines = $disciplines;
     }
 
-    public function getCoordinatedCourse(): ?Discipline
+    /**
+     * @return array|bool
+     */
+    public function getCoordinatedCourse()
     {
-        return $this->coordinatedCourse;
+        if (!$this->coordinatedCourse) {
+            return false;
+        }
+        return [
+            'id' => $this->coordinatedCourse->getId(),
+            'courseName' => $this->coordinatedCourse->getName()
+        ];
     }
 
-    public function setCoordinatedCourse(?Discipline $coordinatedCourse): void
+    public function setCoordinatedCourse(?Course $coordinatedCourse): void
     {
         $this->coordinatedCourse = $coordinatedCourse;
     }

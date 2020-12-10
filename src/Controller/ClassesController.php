@@ -123,5 +123,3 @@ class ClassesController extends AbstractController
         }
     }
 }
-
-

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Course;
 use App\Exception\CourseException;
 use App\Repository\CourseRepository;
+use App\Service\AddCoordinatorCourseService;
 use App\Service\CourseRegisterService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,9 +21,14 @@ class CourseController extends AbstractController
 
     private CourseRegisterService $courseRegisterService;
 
-    public function __construct(CourseRegisterService $courseRegisterService)
-    {
+    private AddCoordinatorCourseService $addCoordinatorCourseService;
+
+    public function __construct(
+        CourseRegisterService $courseRegisterService,
+        AddCoordinatorCourseService $addCoordinatorCourseService
+    ) {
         $this->courseRegisterService = $courseRegisterService;
+        $this->addCoordinatorCourseService = $addCoordinatorCourseService;
     }
 
     /**
@@ -80,7 +86,37 @@ class CourseController extends AbstractController
             $this->courseRegisterService->execute($jsonData['Course'], $course);
 
             return $this->json([
-                'message' => 'Curso atualizado com sucesso.'
+                'message' => 'Curso atualizado com sucesso.',
+            ], 201);
+        } catch (CourseException $courseException) {
+            return $this->json([
+                'error' => $courseException->getMessage(),
+            ], $courseException->getCode());
+        } catch (\Exception $exception) {
+            return $this->json([
+                'error' => 'Ocorreu um erro generico com o cadastro',
+            ], 500);
+        }
+    }
+
+    /**
+     * @Route("/addCoordinator/{id}", name="addCoordinator", methods={"PUT"})
+     */
+    public function addCoordinator(Request $request, Course $course): JsonResponse
+    {
+        $jsonData = $this->transformStringToJson($request);
+
+        try {
+            if (!array_key_exists('TeacherId', $jsonData)) {
+                throw new CourseException(
+                    'Parametros do professor não enviados',
+                    401
+                );
+            }
+            $this->addCoordinatorCourseService->execute(intval($jsonData['TeacherId']), $course);
+
+            return $this->json([
+                'message' => 'Coordenador salvo com sucesso.',
             ], 201);
         } catch (CourseException $courseException) {
             return $this->json([
@@ -110,17 +146,16 @@ class CourseController extends AbstractController
             $this->courseRegisterService->execute($jsonData['Course']);
 
             return $this->json([
-                'message' => 'Curso criado com sucesso.'
+                'message' => 'Curso criado com sucesso.',
             ], 201);
         } catch (CourseException $courseException) {
             return $this->json([
                 'error' => $courseException->getMessage(),
             ], $courseException->getCode());
+        } catch (\Exception $exception) {
+            return $this->json([
+                'error' => 'Ocorreu um erro generico com o cadastro',
+            ], 500);
         }
-//        catch (\Exception $exception) {
-//            return $this->json([
-//                'error' => 'Ocorreu um erro generico com o cadastro',
-//            ], 500);
-//        }
     }
 }
