@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Classes;
+use App\Exception\ClassesException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,6 +21,19 @@ class ClassesRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Classes::class);
+    }
+
+    public function findClasse(int $id): Classes
+    {
+        $classe = $this->find($id);
+        if (!$classe) {
+            throw new ClassesException(
+                'Classe não encontrada.',
+                401
+            );
+        }
+
+        return $classe;
     }
 
     // /**

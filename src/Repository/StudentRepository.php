@@ -23,6 +23,19 @@ class StudentRepository extends ServiceEntityRepository
         parent::__construct($registry, Student::class);
     }
 
+    public function findStudent(int $id): Student
+    {
+        $student = $this->find($id);
+        if (!$student) {
+            throw new StudentException(
+                'Estudante não encontrada.',
+                401
+            );
+        }
+
+        return $student;
+    }
+
     public function checkCpf(string $cpf): void
     {
         $result = $this->createQueryBuilder('s')
