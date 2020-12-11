@@ -9,7 +9,7 @@ class CourseException extends Exception
 {
     public function __construct(string $message = '', int $code = 500, Throwable $throwable = null)
     {
-        parent::__construct("CourseException: {$message}", $code, $throwable);
+        parent::__construct("Curso: {$message}", $code, $throwable);
     }
 
     public function __toString()

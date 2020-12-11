@@ -9,7 +9,7 @@ class MatriculationException extends Exception
 {
     public function __construct(string $message = '', int $code = 500, Throwable $throwable = null)
     {
-        parent::__construct("MatriculationException: {$message}", $code, $throwable);
+        parent::__construct("Matricula: {$message}", $code, $throwable);
     }
 
     public function __toString()

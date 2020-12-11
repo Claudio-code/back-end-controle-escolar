@@ -44,7 +44,11 @@ class MatriculationRegisterService
         
         $student = $this->studentRepository->findStudent(intval($jsonData['StudentId']));
         $classe = $this->classesRepository->findClasse(intval($jsonData['ClasseId']));
-
+        $numberStudents = $classe->getNumberStudents() + 1;
+        if ($numberStudents > $classe->getMaximumStudents()) {
+            throw new MatriculationException('Numero maximo de alunos ecedido', 400);
+        }
+        $classe->setNumberStudents($numberStudents);
         $matriculationData->setClasse($classe);
         $matriculationData->setStudent($student);
         if (!$matriculationData->getCreatedAt()) {

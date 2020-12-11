@@ -9,7 +9,7 @@ class ResponsibleException extends Exception
 {
     public function __construct(string $message = '', int $code = 500, Throwable $throwable = null)
     {
-        parent::__construct("ResponsibleException: {$message}", $code, $throwable);
+        parent::__construct("Responsavel: {$message}", $code, $throwable);
     }
 
     public function __toString()

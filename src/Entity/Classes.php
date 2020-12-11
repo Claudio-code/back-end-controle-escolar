@@ -8,6 +8,7 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use JsonSerializable;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass=ClassesRepository::class)
@@ -59,6 +60,7 @@ class Classes implements JsonSerializable
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Matriculation", mappedBy="classe")
+     * @Serializer\Groups("all")
      */
     private $matriculations;
 
@@ -132,9 +134,16 @@ class Classes implements JsonSerializable
         return $this;
     }
 
-    public function getCourse(): ?Course
+    public function getCourse(): ?array
     {
-        return $this->course;
+        if ($this->course) {
+            return [
+                'id' => $this->course->getId(),
+                'courseName' => $this->course->getName()
+            ];
+        }
+        
+        return null;
     }
 
     /**

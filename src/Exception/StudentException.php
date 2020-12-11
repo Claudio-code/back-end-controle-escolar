@@ -9,7 +9,7 @@ class StudentException extends Exception
 {
     public function __construct(string $message = '', int $code = 500, Throwable $throwable = null)
     {
-        parent::__construct("StudentException: {$message}", $code, $throwable);
+        parent::__construct("Estudante: {$message}", $code, $throwable);
     }
 
     public function __toString()

@@ -9,7 +9,7 @@ class TeacherException extends Exception
 {
     public function __construct(string $message = '', int $code = 500, Throwable $throwable = null)
     {
-        parent::__construct("TeacherException: {$message}", $code, $throwable);
+        parent::__construct("Professor: {$message}", $code, $throwable);
     }
 
     public function __toString()

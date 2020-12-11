@@ -99,9 +99,17 @@ class Matriculation implements JsonSerializable
         $this->student = $student;
     }
 
-    public function getClasse(): ?Classes
+    public function getClasse(): ?array
     {
-        return $this->classe;
+        if ($this->classe) {
+            return  [
+                'id' => $this->classe->getId(),
+                'className' => $this->classe->getName(),
+                'course' => $this->classe->getCourse()
+            ];
+        }
+        
+        return null;
     }
 
     public function setClasse(?Classes $classe): void

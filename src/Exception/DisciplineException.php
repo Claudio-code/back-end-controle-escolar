@@ -9,7 +9,7 @@ class DisciplineException extends Exception
 {
     public function __construct(string $message = '', int $code = 500, Throwable $throwable = null)
     {
-        parent::__construct("DisciplineException: {$message}", $code, $throwable);
+        parent::__construct("Disiplina: {$message}", $code, $throwable);
     }
 
     public function __toString()
