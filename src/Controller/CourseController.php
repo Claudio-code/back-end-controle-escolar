@@ -109,7 +109,7 @@ class CourseController extends AbstractController
         try {
             if (!array_key_exists('TeacherId', $jsonData)) {
                 throw new CourseException(
-                    'Parametros do professor não enviados',
+                    'Parametros não enviados',
                     401
                 );
             }

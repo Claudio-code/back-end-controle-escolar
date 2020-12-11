@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Classes;
 use App\Exception\ClassesException;
 use App\Repository\ClassesRepository;
+use App\Service\AddClasseCourseService;
 use App\Service\ClasseRegisterService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -19,10 +20,15 @@ class ClassesController extends AbstractController
     use TransformJson;
 
     private ClasseRegisterService $classeRegisterService;
+    
+    private AddClasseCourseService $addClasseCourseService;
 
-    public function __construct(ClasseRegisterService $classeRegisterService)
-    {
+    public function __construct(
+        ClasseRegisterService $classeRegisterService,
+        AddClasseCourseService $addClasseCourseService
+    ) {
         $this->classeRegisterService = $classeRegisterService;
+        $this->addClasseCourseService = $addClasseCourseService;
     }
 
     /**
@@ -111,6 +117,36 @@ class ClassesController extends AbstractController
 
             return $this->json([
                 'message' => 'Classe criada com sucesso.',
+            ], 201);
+        } catch (ClassesException $classesException) {
+            return $this->json([
+                'error' => $classesException->getMessage(),
+            ], $classesException->getCode());
+        } catch (\Exception $exception) {
+            return $this->json([
+                'error' => 'Ocorreu um erro generico com o cadastro',
+            ], 500);
+        }
+    }
+
+    /**
+     * @Route("/addCourse/{id}", name="addCourse", methods={"PUT"})
+     */
+    public function addCourse(Request $request, Classes $classes): JsonResponse
+    {
+        $jsonData = $this->transformStringToJson($request);
+
+        try {
+            if (!array_key_exists('CourseId', $jsonData)) {
+                throw new ClassesException(
+                    'Parametros não enviados',
+                    401
+                );
+            }
+            $this->addClasseCourseService->execute($jsonData['CourseId'], $classes);
+
+            return $this->json([
+                'message' => 'Curso adicionado na turma.',
             ], 201);
         } catch (ClassesException $classesException) {
             return $this->json([
